@@ -1,0 +1,236 @@
+/* ===================================================================
+   Portfolio Color System - Soothing Dark Theme
+   ================================================================ */
+
+:root {
+  /* ===== BASE COLORS ===== */
+  --color-midnight: #0E0E10;
+  --color-charcoal: #1A1A1E;
+  --color-blue-primary: #4AA4FF;
+  --color-blue-light: #9ECFFF;
+  --color-lavender: #BA9FFB;
+  --color-white-soft: #EDEDED;
+  --color-gray-muted: #A0A0A0;
+
+  /* ===== BACKGROUND SYSTEM ===== */
+  --bg-primary: var(--color-midnight);        /* Main page background */
+  --bg-secondary: var(--color-charcoal);      /* Card surfaces, modals */
+  --bg-tertiary: #252529;                     /* Elevated elements */
+  --bg-elevated: #2D2D32;                     /* Dropdowns, tooltips */
+  --bg-overlay: rgba(14, 14, 16, 0.85);       /* Modal overlays */
+  --bg-glass: rgba(26, 26, 30, 0.6);          /* Glass morphism effects */
+
+  /* ===== TEXT SYSTEM ===== */
+  --text-primary: var(--color-white-soft);    /* Main headings, body text */
+  --text-secondary: var(--color-gray-muted);  /* Descriptions, metadata */
+  --text-tertiary: #707070;                   /* Disabled, placeholder */
+  --text-accent: var(--color-blue-light);     /* Links, highlights */
+  --text-muted: #606060;                      /* Footnotes, captions */
+  --text-inverse: var(--color-midnight);      /* Text on light backgrounds */
+
+  /* ===== ACCENT COLORS ===== */
+  --accent-primary: var(--color-blue-primary);       /* Primary buttons, CTAs */
+  --accent-primary-hover: #3A94EF;                    /* Hover states */
+  --accent-primary-active: #2A84DF;                   /* Active/pressed */
+  --accent-primary-light: var(--color-blue-light);   /* Secondary actions */
+  --accent-primary-alpha: rgba(74, 164, 255, 0.1);   /* Subtle backgrounds */
+
+  --accent-secondary: var(--color-lavender);          /* Secondary accents */
+  --accent-secondary-hover: #AA8FEB;                  /* Hover states */
+  --accent-secondary-active: #9A7FDB;                 /* Active states */
+  --accent-secondary-alpha: rgba(186, 159, 251, 0.1); /* Subtle backgrounds */
+
+  /* ===== STATE COLORS ===== */
+  --success: #4AFF88;                         /* Success messages, checkmarks */
+  --success-hover: #3AEF78;                   /* Success hover */
+  --success-background: rgba(74, 255, 136, 0.1); /* Success backgrounds */
+  
+  --warning: #FFD93D;                         /* Warning messages */
+  --warning-hover: #EFCA2D;                   /* Warning hover */
+  --warning-background: rgba(255, 217, 61, 0.1); /* Warning backgrounds */
+  
+  --error: #FF6B6B;                           /* Error messages */
+  --error-hover: #EF5B5B;                     /* Error hover */
+  --error-background: rgba(255, 107, 107, 0.1); /* Error backgrounds */
+
+  --info: var(--color-blue-light);            /* Info messages */
+  --info-hover: #8EBFEF;                      /* Info hover */
+  --info-background: rgba(158, 207, 255, 0.1); /* Info backgrounds */
+
+  /* ===== BORDER SYSTEM ===== */
+  --border-primary: rgba(160, 160, 160, 0.2);   /* Main borders */
+  --border-secondary: rgba(160, 160, 160, 0.1);  /* Subtle separators */
+  --border-accent: var(--accent-primary);        /* Focused inputs */
+  --border-muted: rgba(112, 112, 112, 0.15);     /* Disabled borders */
+  --border-hover: rgba(160, 160, 160, 0.3);      /* Hover states */
+
+  /* ===== SHADOW SYSTEM ===== */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 20px rgba(74, 164, 255, 0.3);
+  --shadow-glow-secondary: 0 0 20px rgba(186, 159, 251, 0.3);
+
+  /* ===== COMPONENT SPECIFIC ===== */
+  /* Navigation */
+  --nav-background: rgba(26, 26, 30, 0.9);
+  --nav-border: rgba(160, 160, 160, 0.1);
+  --nav-link: var(--text-secondary);
+  --nav-link-hover: var(--text-accent);
+  --nav-link-active: var(--accent-primary);
+
+  /* Cards */
+  --card-background: var(--bg-secondary);
+  --card-border: var(--border-secondary);
+  --card-shadow: var(--shadow-md);
+  --card-hover-shadow: var(--shadow-lg);
+
+  /* Buttons */
+  --btn-primary-bg: var(--accent-primary);
+  --btn-primary-text: var(--text-inverse);
+  --btn-primary-hover: var(--accent-primary-hover);
+  --btn-primary-shadow: var(--shadow-sm);
+
+  --btn-secondary-bg: var(--bg-tertiary);
+  --btn-secondary-text: var(--text-primary);
+  --btn-secondary-hover: var(--bg-elevated);
+  --btn-secondary-border: var(--border-primary);
+
+  --btn-ghost-bg: transparent;
+  --btn-ghost-text: var(--text-accent);
+  --btn-ghost-hover: var(--accent-primary-alpha);
+
+  /* Forms */
+  --input-background: var(--bg-tertiary);
+  --input-border: var(--border-primary);
+  --input-border-focus: var(--border-accent);
+  --input-text: var(--text-primary);
+  --input-placeholder: var(--text-tertiary);
+
+  /* Code Blocks */
+  --code-background: var(--bg-tertiary);
+  --code-border: var(--border-secondary);
+  --code-text: var(--color-blue-light);
+  --code-keyword: var(--accent-secondary);
+  --code-string: #98D982;
+  --code-comment: var(--text-tertiary);
+
+  /* Links */
+  --link-default: var(--text-accent);
+  --link-hover: var(--accent-primary);
+  --link-visited: var(--accent-secondary);
+  --link-external: var(--color-lavender);
+
+  /* Selection */
+  --selection-background: rgba(74, 164, 255, 0.25);
+  --selection-text: var(--text-primary);
+
+  /* Scrollbar */
+  --scrollbar-track: var(--bg-primary);
+  --scrollbar-thumb: var(--bg-tertiary);
+  --scrollbar-thumb-hover: var(--bg-elevated);
+}
+
+/* ===================================================================
+   SEMANTIC COLOR ALIASES
+   ================================================================ */
+
+:root {
+  /* Primary Brand */
+  --brand-primary: var(--accent-primary);
+  --brand-secondary: var(--accent-secondary);
+  
+  /* Content */
+  --content-background: var(--bg-primary);
+  --content-surface: var(--bg-secondary);
+  --content-text: var(--text-primary);
+  --content-text-muted: var(--text-secondary);
+  
+  /* Interactive */
+  --interactive-primary: var(--accent-primary);
+  --interactive-secondary: var(--accent-secondary);
+  --interactive-hover: var(--accent-primary-hover);
+  --interactive-active: var(--accent-primary-active);
+  
+  /* Feedback */
+  --feedback-success: var(--success);
+  --feedback-warning: var(--warning);
+  --feedback-error: var(--error);
+  --feedback-info: var(--info);
+}
+
+/* ===================================================================
+   DARK THEME PREFERENCES
+   ================================================================ */
+
+/* Ensure proper dark theme regardless of system preference */
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Keep dark theme even if user prefers light */
+    color-scheme: dark;
+  }
+}
+
+/* Enhanced contrast for accessibility */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #FFFFFF;
+    --text-secondary: #CCCCCC;
+    --border-primary: rgba(255, 255, 255, 0.3);
+    --bg-secondary: #222226;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: none;
+    --transition-normal: none;
+    --transition-slow: none;
+  }
+}
+
+/* ===================================================================
+   TRANSITION SYSTEM
+   ================================================================ */
+
+:root {
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 250ms ease-out;
+  --transition-slow: 400ms ease-out;
+  --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  --easing-ease-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --easing-ease-in: cubic-bezier(0.5, 0, 0.75, 0);
+  --easing-ease-in-out: cubic-bezier(0.5, 0, 0.5, 1);
+}
+
+/* ===================================================================
+   SPACING & SIZING SYSTEM
+   ================================================================ */
+
+:root {
+  /* Spacing scale */
+  --space-xs: 0.25rem;    /* 4px */
+  --space-sm: 0.5rem;     /* 8px */
+  --space-md: 1rem;       /* 16px */
+  --space-lg: 1.5rem;     /* 24px */
+  --space-xl: 2rem;       /* 32px */
+  --space-2xl: 3rem;      /* 48px */
+  --space-3xl: 4rem;      /* 64px */
+  
+  /* Border radius */
+  --radius-sm: 0.25rem;   /* 4px */
+  --radius-md: 0.5rem;    /* 8px */
+  --radius-lg: 0.75rem;   /* 12px */
+  --radius-xl: 1rem;      /* 16px */
+  --radius-full: 9999px;  /* Full radius */
+  
+  /* Z-index scale */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal: 400;
+  --z-tooltip: 500;
+}

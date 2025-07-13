@@ -1,1 +1,8 @@
 node_modules
+projectDocumentation.md
+.turbo
+.contentlayer
+/apps/web/.turbo
+/apps/web/.contentlayer
+/apps/web/node_modules
+/apps/web/.next
