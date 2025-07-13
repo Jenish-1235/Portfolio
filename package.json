@@ -23,7 +23,7 @@
     "build": "turbo run build --filter=web",
     "build:vercel": "cd apps/web && npm install && npm run build",
     "dev": "cd apps/web && contentlayer build && cd ../.. && turbo run dev --filter=web",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "devDependencies": {
     "contentlayer": "^0.3.4",
