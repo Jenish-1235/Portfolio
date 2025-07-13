@@ -1,8 +1,8 @@
+// contentlayer.config.ts
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
 import remarkGfm from "remark-gfm";
 import path from "path";
-
-const Blog = defineDocumentType(() => ({
+var Blog = defineDocumentType(() => ({
   name: "Blog",
   filePathPattern: "blogs/**/*.mdx",
   contentType: "mdx",
@@ -14,8 +14,7 @@ const Blog = defineDocumentType(() => ({
     tags: { type: "list", of: { type: "string" } }
   }
 }));
-
-const Paper = defineDocumentType(() => ({
+var Paper = defineDocumentType(() => ({
   name: "Paper",
   filePathPattern: "papers/**/*.mdx",
   contentType: "mdx",
@@ -27,8 +26,7 @@ const Paper = defineDocumentType(() => ({
     tags: { type: "list", of: { type: "string" } }
   }
 }));
-
-const Project = defineDocumentType(() => ({
+var Project = defineDocumentType(() => ({
   name: "Project",
   filePathPattern: "projects/**/*.mdx",
   contentType: "mdx",
@@ -41,11 +39,14 @@ const Project = defineDocumentType(() => ({
     tags: { type: "list", of: { type: "string" } }
   }
 }));
-
-export default makeSource({
+var contentlayer_config_default = makeSource({
   contentDirPath: path.join(process.cwd(), "content"),
   documentTypes: [Blog, Paper, Project],
   mdx: {
     remarkPlugins: [remarkGfm]
   }
 });
+export {
+  contentlayer_config_default as default
+};
+//# sourceMappingURL=compiled-contentlayer-config-KQH3OGQV.mjs.map

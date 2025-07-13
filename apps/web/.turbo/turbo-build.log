@@ -1,0 +1,24 @@
+
+
+> web@0.1.0 build
+> next build
+
+   [1m[38;2;173;127;168m▲ Next.js 15.3.5[39m[22m
+
+ [37m[1m [22m[39m Creating an optimized production build ...
+NoConfigFoundError {
+  cwd: [32m'/home/jenu/projects/major-projects/Portfolio/apps/web'[39m,
+  configPath: [90mundefined[39m,
+  _tag: [32m'NoConfigFoundError'[39m,
+  toString: [36m[Function (anonymous)][39m,
+  [[32mSymbol()[39m]: {
+    cwd: [32m'/home/jenu/projects/major-projects/Portfolio/apps/web'[39m,
+    configPath: [90mundefined[39m
+  },
+  [[32mSymbol()[39m]: [ [32m'configPath'[39m, [32m'cwd'[39m ]
+}
+[37;40mnpm[0m [0m[31;40mERR![0m [0m[35mLifecycle script `build` failed with error:[0m 
+[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35mError: command failed[0m 
+[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35m  in workspace: web@0.1.0[0m 
+[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35m  at location: /home/jenu/projects/major-projects/Portfolio/apps/web[0m 
+[0m

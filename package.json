@@ -1,22 +1,29 @@
 {
   "name": "portfolio",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
-  "scripts": {
-    "dev": "turbo run dev --filter=web",
-    "build": "turbo run build --filter=web",
-    "postinstall": "turbo run build",
-    "lint": "turbo run lint",
-    "typecheck": "turbo run typecheck"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jenish-1235/Portfolio.git"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jenish-1235/Portfolio/issues"
+  },
+  "homepage": "https://github.com/Jenish-1235/Portfolio#readme",
+  "packageManager": "npm@9.8.1",
   "workspaces": [
     "apps/*",
     "libs/*"
   ],
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "dev": "contentlayer build && turbo run dev --filter=web",
+    "build": "contentlayer build && turbo run build --filter=web",
+    "contentlayer:build": "contentlayer build",
+    "contentlayer:dev": "contentlayer dev"
+  },
   "devDependencies": {
     "turbo": "^2.5.4"
   },
@@ -25,6 +32,5 @@
     "gray-matter": "^4.0.3",
     "next-contentlayer": "^0.3.4",
     "remark-gfm": "^4.0.1"
-  },
-  "packageManager": "npm@9.8.1"
+  }
 }

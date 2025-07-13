@@ -1,7 +1,19 @@
-import type { NextConfig } from "next";
+const { withContentlayer } = require("next-contentlayer");
+const path = require("path");
 
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    appDir: true,
+  },
+  webpack: (config: { resolve: { alias: any; }; }) => {
+    // Ensure contentlayer config is resolved from root
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      'contentlayer/generated': path.resolve(__dirname, '../../.contentlayer/generated')
+    };
+    return config;
+  }
 };
 
-export default nextConfig;
+module.exports = withContentlayer(nextConfig);
