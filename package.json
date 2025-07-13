@@ -19,17 +19,19 @@
     "libs/*"
   ],
   "scripts": {
-    "dev": "contentlayer build && turbo run dev --filter=web",
-    "build": "contentlayer build && turbo run build --filter=web",
-    "contentlayer:build": "contentlayer build",
-    "contentlayer:dev": "contentlayer dev"
+        "prebuild": "cd apps/web && contentlayer build",
+        "build": "turbo run build --filter=web",
+        "dev": "cd apps/web && contentlayer build && cd ../.. && turbo run dev --filter=web"
+    
   },
   "devDependencies": {
-    "turbo": "^2.5.4"
+    "turbo": "^2.5.4",
+    "contentlayer": "^0.3.4"
   },
   "dependencies": {
     "contentlayer": "^0.3.4",
     "gray-matter": "^4.0.3",
+    "next": "^13.5.11",
     "next-contentlayer": "^0.3.4",
     "remark-gfm": "^4.0.1"
   }

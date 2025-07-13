@@ -8,11 +8,11 @@ const Blog = defineDocumentType(() => ({
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
-    date: { type: "date", required: true },
     slug: { type: "string", required: true },
+    date: { type: "date", required: true },
     summary: { type: "string", required: false },
-    tags: { type: "list", of: { type: "string" } }
-  }
+    tags: { type: "list", of: { type: "string" }, required: false },
+  },
 }));
 
 const Paper = defineDocumentType(() => ({
@@ -43,9 +43,7 @@ const Project = defineDocumentType(() => ({
 }));
 
 export default makeSource({
-  contentDirPath: path.join(process.cwd(), "content"),
+  contentDirPath: path.join(process.cwd(), "../../content"),
   documentTypes: [Blog, Paper, Project],
-  mdx: {
-    remarkPlugins: [remarkGfm]
-  }
+  mdx: { remarkPlugins: [remarkGfm] },
 });
