@@ -1,0 +1,29 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "postinstall": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck"
+  },
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "turbo": "^2.5.4"
+  },
+  "dependencies": {
+    "contentlayer": "^0.3.4",
+    "gray-matter": "^4.0.3",
+    "next-contentlayer": "^0.3.4",
+    "remark-gfm": "^4.0.1"
+  }
+}
