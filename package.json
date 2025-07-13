@@ -19,15 +19,16 @@
     "libs/*"
   ],
   "scripts": {
-        "prebuild": "cd apps/web && contentlayer build",
-        "build": "turbo run build --filter=web",
-        "build:vercel": "cd apps/web && npm install && npm run build",
-        "dev": "cd apps/web && contentlayer build && cd ../.. && turbo run dev --filter=web"
-    
+    "prebuild": "cd apps/web && contentlayer build",
+    "build": "turbo run build --filter=web",
+    "build:vercel": "cd apps/web && npm install && npm run build",
+    "dev": "cd apps/web && contentlayer build && cd ../.. && turbo run dev --filter=web",
+    "prepare": "husky install"
   },
   "devDependencies": {
-    "turbo": "^2.5.4",
-    "contentlayer": "^0.3.4"
+    "contentlayer": "^0.3.4",
+    "husky": "^9.1.7",
+    "turbo": "^2.5.4"
   },
   "dependencies": {
     "contentlayer": "^0.3.4",
