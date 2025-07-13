@@ -1,4 +1,4 @@
-import { allBlogs } from "contentlayer/generated";
+import { allBlogs } from ".contentlayer/generated";
 import Link from "next/link";
 
 export default function BlogList() {

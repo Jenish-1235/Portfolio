@@ -1,4 +1,4 @@
-import { allBlogs } from "contentlayer/generated";
+import { allBlogs } from ".contentlayer/generated";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
