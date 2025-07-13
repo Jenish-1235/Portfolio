@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "turbo run dev",
-    "build": "turbo run build",
+    "dev": "turbo run dev --filter=web",
+    "build": "turbo run build --filter=web",
     "postinstall": "turbo run build",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck"
