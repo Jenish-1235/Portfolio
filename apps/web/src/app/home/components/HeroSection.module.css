@@ -1,0 +1,110 @@
+/* HeroSection.module.css */
+
+.heroSection {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-primary);
+    overflow: hidden;
+}
+
+.heroTextBlock {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-lg);
+}
+
+.textWrapper {
+    max-width: 48rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+@media screen and (min-width: 768px) {
+    .title {
+        font-size: 3rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .title {
+        font-size: 3.5rem;
+    }
+}
+
+.subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+    .subtitle {
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .subtitle {
+        font-size: 1.5rem;
+    }
+}
+.accent {
+    color: var(--accent-primary);
+}
+
+
+.ctaContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+    align-items: center;
+    justify-content: center;
+}
+
+@media screen and (min-width: 640px) {
+    .ctaContainer {
+        flex-direction: row;
+    }
+}
+
+
+.heroImageContainer {
+    position: absolute;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    z-index: 10;
+}
+
+@media screen and (min-width: 768px) {
+    .heroImageContainer {
+        bottom: var(--space-xl);
+        right: var(--space-xl);
+    }
+}
+
+.heroImageWrapper {
+    width: 16rem;
+    height: 16rem;
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-glow);
+    overflow: hidden;
+}
+
+.heroImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}

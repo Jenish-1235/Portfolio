@@ -1,9 +1,9 @@
-import BlogList from "./blogs/page";
+import HomePage from "./home/page";
 
 export default function Home() {
   return (
     <>
-    <BlogList/>
+    <HomePage/>
     </>
   );
 }

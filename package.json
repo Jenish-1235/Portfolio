@@ -25,15 +25,24 @@
     "dev": "cd apps/web && contentlayer build && cd ../.. && turbo run dev --filter=web"
   },
   "devDependencies": {
+    "@types/three": "^0.178.1",
     "contentlayer": "^0.3.4",
     "husky": "^9.1.7",
     "turbo": "^2.5.4"
   },
   "dependencies": {
+    "@emotion/is-prop-valid": "^1.3.1",
+    "@react-three/drei": "^10.5.0",
+    "@react-three/fiber": "^9.2.0",
+    "@react-three/postprocessing": "^3.0.4",
     "contentlayer": "^0.3.4",
+    "framer": "^2.4.1",
+    "framer-motion": "^12.23.3",
     "gray-matter": "^4.0.3",
     "next": "^13.5.11",
     "next-contentlayer": "^0.3.4",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "three": "^0.178.0",
+    "three-stdlib": "^2.36.0"
   }
 }
