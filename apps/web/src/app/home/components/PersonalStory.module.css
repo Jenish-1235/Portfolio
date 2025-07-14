@@ -1,0 +1,128 @@
+/* Personal Story Styles */
+.storyContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.storyTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  margin-bottom: 1.5rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.storyContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.storyBlock {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.storyBlock p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.storyBlock strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.storyBlock em {
+  color: var(--accent-primary);
+  font-style: italic;
+}
+
+.currentFocus {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+.currentFocus h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.currentFocus ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.currentFocus li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.5;
+}
+
+.currentFocus li::before {
+  content: "▶";
+  position: absolute;
+  left: 0;
+  color: var(--accent-primary);
+  font-size: 0.8rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .storyContainer {
+    padding: 0.5rem;
+  }
+  
+  .storyTitle {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .storyContent {
+    gap: 1rem;
+  }
+  
+  .storyBlock p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  .currentFocus {
+    padding: 1rem;
+  }
+  
+  .currentFocus h4 {
+    font-size: 1rem;
+  }
+  
+  .currentFocus li {
+    font-size: 0.85rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .storyBlock p {
+    font-size: 0.85rem;
+  }
+  
+  .currentFocus {
+    padding: 0.8rem;
+  }
+}

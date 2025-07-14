@@ -3,21 +3,12 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "./HeroSection.module.css";
-import NavBar from "@/app/common/NavBar";
 import PrimaryButton from "@/app/common/PrimaryButton";
 import GhostButton from "@/app/common/GhostButton";
 
 export default function HeroSection() {
   return (
     <section className={styles.heroSection}>
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
-        <NavBar />
-      </motion.div>
-
       <div className={styles.heroTextBlock}>
         <div className={styles.textWrapper}>
           {/* Title */}
@@ -50,6 +41,19 @@ export default function HeroSection() {
           >
             <PrimaryButton>Explore My Work</PrimaryButton>
             <GhostButton>Get in Touch</GhostButton>
+          </motion.div>
+
+          {/* Scroll Hint */}
+          <motion.div
+            className={styles.scrollHint}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.4 }}
+          >
+            <div className={styles.scrollIndicator}>
+              <div className={styles.scrollArrow}></div>
+              <span className={styles.scrollText}>Scroll to explore</span>
+            </div>
           </motion.div>
         </div>
       </div>
