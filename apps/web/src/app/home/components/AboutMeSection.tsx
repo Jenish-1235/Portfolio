@@ -6,6 +6,7 @@ import styles from "./AboutMeSection.module.css";
 import PersonalStory from "./PersonalStory";
 import SkillsSection from "./SkillsSection";
 import Image from "next/image";
+import ExperienceSection from "./ExperienceSection";
 
 export default function AboutMeSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -46,6 +47,11 @@ export default function AboutMeSection() {
       {/* Section 2: Skills */}
       <section className={styles.skillsSection}>
         <SkillsSection/>
+      </section>
+
+      {/* Section 3: Experience */}
+      <section className={styles.experienceSection}>
+        <ExperienceSection />
       </section>
     </div>
   );

@@ -30,6 +30,19 @@
     box-sizing: border-box;
 }
 
+.experienceSection {
+    width: 100%;
+    min-height: 100vh;
+    padding: 6rem 2rem 2rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
+
 /* Personal Story Section */
 .personalSection {
     display: flex;
