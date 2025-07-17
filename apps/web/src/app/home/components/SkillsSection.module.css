@@ -112,6 +112,21 @@
     background-color: rgba(255, 255, 255, 0.1);
   }
   
+  @media (max-width: 1024px) {
+    .skillsSection::before, .skillCard::before {
+      display: none;
+    }
+
+    .skillCard {
+      transform: none !important;
+    }
+
+    .skillCard:hover {
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
   @media (max-width: 768px) {
     .title {
       font-size: 2.8rem;

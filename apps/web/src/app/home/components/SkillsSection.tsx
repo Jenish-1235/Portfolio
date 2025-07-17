@@ -1,6 +1,6 @@
 import skills from '@/data/skills.json';
 import styles from './SkillsSection.module.css';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, Variants } from 'framer-motion';
 import React, { useRef } from 'react';
 import useIsMobile from '@/hooks/useIsMobile';
 
@@ -10,7 +10,7 @@ interface SkillCategory {
 }
 
 const SkillsSection = () => {
-  const isMobile = useIsMobile();
+  const isTabletOrMobile = useIsMobile(1024);
   const ref = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -38,10 +38,11 @@ const SkillsSection = () => {
   return (
     <motion.div 
       ref={ref}
-      onMouseMove={!isMobile ? handleMouseMove : undefined}
-      onMouseLeave={!isMobile ? handleMouseLeave : undefined}
+      onMouseMove={!isTabletOrMobile ? handleMouseMove : undefined}
+      onMouseLeave={!isTabletOrMobile ? handleMouseLeave : undefined}
       className={styles.skillsSection}
-      style={!isMobile ? {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      style={!isTabletOrMobile ? {
         '--grad1x': grad1x,
         '--grad1y': grad1y,
         '--grad2x': grad2x,
@@ -53,7 +54,7 @@ const SkillsSection = () => {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: false, amount: 0.2 }}
+        viewport={{ once: isTabletOrMobile, amount: 0.2 }}
       >
         Skills & Technical Expertise
       </motion.h2>
@@ -63,7 +64,7 @@ const SkillsSection = () => {
             key={skillCategory.category} 
             skillCategory={skillCategory} 
             index={index} 
-            isMobile={isMobile}
+            isTabletOrMobile={isTabletOrMobile}
           />
         ))}
       </div>
@@ -71,7 +72,7 @@ const SkillsSection = () => {
   );
 };
 
-const SkillCard = ({ skillCategory, index, isMobile }: { skillCategory: SkillCategory, index: number, isMobile: boolean }) => {
+const SkillCard = ({ skillCategory, index, isTabletOrMobile }: { skillCategory: SkillCategory, index: number, isTabletOrMobile: boolean }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const mouseX = useSpring(x, { stiffness: 50, damping: 20 });
@@ -87,7 +88,7 @@ const SkillCard = ({ skillCategory, index, isMobile }: { skillCategory: SkillCat
   const spotlightY = useTransform(cardY, (val) => `${val}px`);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (isMobile) return;
+    if (isTabletOrMobile) return;
     const rect = e.currentTarget.getBoundingClientRect();
     x.set((e.clientX - rect.left) / rect.width - 0.5);
     y.set((e.clientY - rect.top) / rect.height - 0.5);
@@ -96,14 +97,14 @@ const SkillCard = ({ skillCategory, index, isMobile }: { skillCategory: SkillCat
   };
 
   const handleMouseLeave = () => {
-    if (isMobile) return;
+    if (isTabletOrMobile) return;
     x.set(0);
     y.set(0);
     cardX.set(0);
     cardY.set(0);
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -113,19 +114,26 @@ const SkillCard = ({ skillCategory, index, isMobile }: { skillCategory: SkillCat
     },
   };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+  const itemVariants: Variants = {
+    hidden: { y: isTabletOrMobile ? 0 : 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
     },
   };
 
+  const cardAnimation = {
+    initial: { opacity: 0, scale: isTabletOrMobile ? 1 : 0.9, y: isTabletOrMobile ? 0 : 50 },
+    whileInView: { opacity: 1, scale: 1, y: 0 },
+    transition: { duration: 0.6, delay: index * 0.1, ease: "easeOut" }
+  };
+
   return (
     <motion.div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={!isMobile ? {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      style={!isTabletOrMobile ? {
         transformStyle: 'preserve-3d',
         rotateX,
         rotateY,
@@ -133,13 +141,14 @@ const SkillCard = ({ skillCategory, index, isMobile }: { skillCategory: SkillCat
         '--spotlight-y': spotlightY,
       } as any : {}}
       className={styles.skillCard}
-      initial={{ opacity: 0, scale: 0.9, y: 50 }}
-      whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-      viewport={{ once: false, amount: 0.3 }}
+      initial={cardAnimation.initial}
+      whileInView={cardAnimation.whileInView}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      transition={cardAnimation.transition as any}
+      viewport={{ once: isTabletOrMobile, amount: 0.3 }}
     >
       <div style={{ 
-        transform: !isMobile ? 'translateZ(50px)' : 'none',
+        transform: 'none', // Removed conditional transform for simplicity
         animationDelay: `${index * 0.2}s` 
       }}>
         <h3 className={styles.categoryTitle}>{skillCategory.category}</h3>
@@ -148,10 +157,10 @@ const SkillCard = ({ skillCategory, index, isMobile }: { skillCategory: SkillCat
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: false, amount: 0.3 }}
+          viewport={{ once: isTabletOrMobile, amount: 0.3 }}
         >
           {skillCategory.technologies.map((tech: string) => (
-            <MagneticTechItem key={tech} isMobile={isMobile}>
+            <MagneticTechItem key={tech} isTabletOrMobile={isTabletOrMobile}>
               <motion.div
                 className={styles.techItem}
                 variants={itemVariants}
@@ -167,12 +176,12 @@ const SkillCard = ({ skillCategory, index, isMobile }: { skillCategory: SkillCat
   );
 };
 
-const MagneticTechItem = ({ children, isMobile }: { children: React.ReactNode, isMobile: boolean }) => {
+const MagneticTechItem = ({ children, isTabletOrMobile }: { children: React.ReactNode, isTabletOrMobile: boolean }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const [position, setPosition] = React.useState({ x: 0, y: 0 });
 
   const handleMouse = (e: React.MouseEvent) => {
-    if (isMobile || !ref.current) return;
+    if (isTabletOrMobile || !ref.current) return;
     const { clientX, clientY } = e;
     const { height, width, left, top } = ref.current.getBoundingClientRect();
     const x = clientX - (left + width / 2);
@@ -181,11 +190,15 @@ const MagneticTechItem = ({ children, isMobile }: { children: React.ReactNode, i
   };
 
   const handleMouseLeave = () => {
-    if (isMobile) return;
     setPosition({ x: 0, y: 0 });
   };
 
   const { x, y } = position;
+
+  if (isTabletOrMobile) {
+    return <>{children}</>;
+  }
+
   return (
     <motion.div
       ref={ref}
