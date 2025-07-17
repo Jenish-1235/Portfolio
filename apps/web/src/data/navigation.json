@@ -1,0 +1,32 @@
+[
+  {
+    "path": "/",
+    "title": "Home",
+    "nextPath": "/projects",
+    "nextTitle": "Projects"
+  },
+  {
+    "path": "/projects",
+    "title": "Projects",
+    "nextPath": "/papershelf",
+    "nextTitle": "Papershelf"
+  },
+  {
+    "path": "/papershelf",
+    "title": "Papershelf",
+    "nextPath": "/blogs",
+    "nextTitle": "Blog"
+  },
+  {
+    "path": "/blogs",
+    "title": "Blog",
+    "nextPath": "/contact",
+    "nextTitle": "Contact Me"
+  },
+  {
+    "path": "/contact",
+    "title": "Contact Me",
+    "nextPath": null,
+    "nextTitle": null
+  }
+]
