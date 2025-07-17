@@ -2,6 +2,7 @@ import skills from '@/data/skills.json';
 import styles from './SkillsSection.module.css';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React, { useRef } from 'react';
+import useIsMobile from '@/hooks/useIsMobile';
 
 interface SkillCategory {
   category: string;
@@ -9,6 +10,7 @@ interface SkillCategory {
 }
 
 const SkillsSection = () => {
+  const isMobile = useIsMobile();
   const ref = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -36,15 +38,15 @@ const SkillsSection = () => {
   return (
     <motion.div 
       ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={!isMobile ? handleMouseMove : undefined}
+      onMouseLeave={!isMobile ? handleMouseLeave : undefined}
       className={styles.skillsSection}
-      style={{
+      style={!isMobile ? {
         '--grad1x': grad1x,
         '--grad1y': grad1y,
         '--grad2x': grad2x,
         '--grad2y': grad2y,
-      } as React.CSSProperties}
+      } as any : {}}
     >
       <motion.h2 
         className={styles.title}
@@ -57,14 +59,19 @@ const SkillsSection = () => {
       </motion.h2>
       <div className={styles.skillsGrid}>
         {skills.skills.map((skillCategory, index) => (
-          <SkillCard key={skillCategory.category} skillCategory={skillCategory} index={index} />
+          <SkillCard 
+            key={skillCategory.category} 
+            skillCategory={skillCategory} 
+            index={index} 
+            isMobile={isMobile}
+          />
         ))}
       </div>
     </motion.div>
   );
 };
 
-const SkillCard = ({ skillCategory, index }: { skillCategory: SkillCategory, index: number }) => {
+const SkillCard = ({ skillCategory, index, isMobile }: { skillCategory: SkillCategory, index: number, isMobile: boolean }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const mouseX = useSpring(x, { stiffness: 50, damping: 20 });
@@ -75,8 +82,12 @@ const SkillCard = ({ skillCategory, index }: { skillCategory: SkillCategory, ind
 
   const cardX = useMotionValue(0);
   const cardY = useMotionValue(0);
+  
+  const spotlightX = useTransform(cardX, (val) => `${val}px`);
+  const spotlightY = useTransform(cardY, (val) => `${val}px`);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (isMobile) return;
     const rect = e.currentTarget.getBoundingClientRect();
     x.set((e.clientX - rect.left) / rect.width - 0.5);
     y.set((e.clientY - rect.top) / rect.height - 0.5);
@@ -85,6 +96,7 @@ const SkillCard = ({ skillCategory, index }: { skillCategory: SkillCategory, ind
   };
 
   const handleMouseLeave = () => {
+    if (isMobile) return;
     x.set(0);
     y.set(0);
     cardX.set(0);
@@ -113,13 +125,13 @@ const SkillCard = ({ skillCategory, index }: { skillCategory: SkillCategory, ind
     <motion.div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{
+      style={!isMobile ? {
         transformStyle: 'preserve-3d',
         rotateX,
         rotateY,
-        '--spotlight-x': useTransform(cardX, (val) => `${val}px`),
-        '--spotlight-y': useTransform(cardY, (val) => `${val}px`),
-      } as React.CSSProperties}
+        '--spotlight-x': spotlightX,
+        '--spotlight-y': spotlightY,
+      } as any : {}}
       className={styles.skillCard}
       initial={{ opacity: 0, scale: 0.9, y: 50 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -127,7 +139,7 @@ const SkillCard = ({ skillCategory, index }: { skillCategory: SkillCategory, ind
       viewport={{ once: false, amount: 0.3 }}
     >
       <div style={{ 
-        transform: 'translateZ(50px)',
+        transform: !isMobile ? 'translateZ(50px)' : 'none',
         animationDelay: `${index * 0.2}s` 
       }}>
         <h3 className={styles.categoryTitle}>{skillCategory.category}</h3>
@@ -139,7 +151,7 @@ const SkillCard = ({ skillCategory, index }: { skillCategory: SkillCategory, ind
           viewport={{ once: false, amount: 0.3 }}
         >
           {skillCategory.technologies.map((tech: string) => (
-            <MagneticTechItem key={tech}>
+            <MagneticTechItem key={tech} isMobile={isMobile}>
               <motion.div
                 className={styles.techItem}
                 variants={itemVariants}
@@ -155,12 +167,12 @@ const SkillCard = ({ skillCategory, index }: { skillCategory: SkillCategory, ind
   );
 };
 
-const MagneticTechItem = ({ children }: { children: React.ReactNode }) => {
+const MagneticTechItem = ({ children, isMobile }: { children: React.ReactNode, isMobile: boolean }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const [position, setPosition] = React.useState({ x: 0, y: 0 });
 
   const handleMouse = (e: React.MouseEvent) => {
-    if (!ref.current) return;
+    if (isMobile || !ref.current) return;
     const { clientX, clientY } = e;
     const { height, width, left, top } = ref.current.getBoundingClientRect();
     const x = clientX - (left + width / 2);
@@ -169,6 +181,7 @@ const MagneticTechItem = ({ children }: { children: React.ReactNode }) => {
   };
 
   const handleMouseLeave = () => {
+    if (isMobile) return;
     setPosition({ x: 0, y: 0 });
   };
 
