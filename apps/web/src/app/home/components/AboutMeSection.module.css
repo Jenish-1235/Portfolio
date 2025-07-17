@@ -1,14 +1,17 @@
 .aboutContainer {
     width: 100%;
-    height: 100vh; /* 3 sections */
+    min-height: 100vh;
     position: relative;
-    padding: 2rem;
 }
 
 .section {
     width: 100%;
-    height: 100vh;
-    padding: 6rem 2rem 2rem 2rem; /* Added top padding for navbar */
+    min-height: 100vh;
+    /* Ensure content never hides behind navbar */
+    padding-top: calc(4rem + 2rem); /* navbar height + safe spacing */
+    padding-bottom: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     display: flex;
@@ -18,6 +21,7 @@
     scroll-snap-align: start;
     scroll-snap-stop: always;
     position: relative;
+    box-sizing: border-box;
 }
 
 /* Personal Story Section */
@@ -30,6 +34,8 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    height: auto;
+    min-height: calc(100vh - 8rem); /* Full height minus padding */
 }
 
 .profileImageContainer {
@@ -72,6 +78,8 @@
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 /* Skills Section */
@@ -92,6 +100,8 @@
     background: var(--bg-secondary);
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-color);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .skillsTextContainer h3 {
@@ -132,11 +142,44 @@
 }
 
 /* Responsive Design */
+@media screen and (max-width: 1300px) {
+    .personalSection {
+        flex-direction: column;
+        gap: 3rem;
+        width: 85%;
+        min-height: calc(100vh - 8rem);
+    }
+    
+    .profileImageContainer {
+        flex: none;
+        min-width: auto;
+    }
+    
+    .profileImage {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .personalStoryContainer {
+        width: 100%;
+        max-width: 600px;
+        padding: 2rem;
+    }
+}
+
 @media screen and (max-width: 1024px) {
+    .section {
+        padding-top: calc(4rem + 2rem); /* Mobile navbar height + spacing */
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
     .personalSection,
     .skillsSection {
         flex-direction: column;
         gap: 2rem;
+        width: 90%;
+        min-height: calc(100vh - 8rem);
     }
     
     .profileImageContainer {
@@ -144,8 +187,8 @@
     }
     
     .profileImage {
-        width: 200px;
-        height: 200px;
+        width: 250px;
+        height: 250px;
     }
     
     .personalStoryContainer,
@@ -156,13 +199,19 @@
     }
 }
 
-/* Responsive Design for 80% width layout */
 @media screen and (max-width: 768px) {
+    .section {
+        padding-top: calc(4rem + 1.5rem);
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
     .personalSection {
         flex-direction: column;
         gap: 2rem;
-        width: 90%;
+        width: 95%;
         padding: 0 1rem;
+        min-height: calc(100vh - 7rem);
     }
     
     .profileImageContainer {
@@ -171,35 +220,28 @@
     }
     
     .profileImage {
-        width: 250px;
-        height: 250px;
+        width: 220px;
+        height: 220px;
     }
     
     .personalStoryContainer {
         width: 100%;
+        max-width: 500px;
         padding: 1.5rem;
     }
 }
 
 @media screen and (max-width: 480px) {
     .section {
-        padding: 0 0.5rem;
-    }
-    
-    .heading {
-        font-size: 1.5rem;
-    }
-    
-    .personalStoryContainer,
-    .skillsTextContainer,
-    .skillsCloudContainer,
-    .experienceSection {
-        padding: 1rem;
+        padding-top: calc(3rem + 1.5rem);
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
     }
     
     .personalSection {
         width: 95%;
         padding: 0 0.5rem;
+        min-height: calc(100vh - 6rem);
     }
     
     .profileImage {
@@ -208,6 +250,14 @@
     }
     
     .personalStoryContainer {
+        padding: 1rem;
+        max-width: 100%;
+    }
+    
+    .personalStoryContainer,
+    .skillsTextContainer,
+    .skillsCloudContainer,
+    .experienceSection {
         padding: 1rem;
     }
 }

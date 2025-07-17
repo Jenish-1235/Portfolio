@@ -10,6 +10,25 @@ export default function HeroSection() {
   return (
     <section className={styles.heroSection}>
       <div className={styles.heroTextBlock}>
+        {/* Profile Image - will be reordered via CSS */}
+        <motion.div
+          className={styles.heroImageContainer}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <div className={styles.heroImageWrapper}>
+            <Image
+              src="/profile.png"
+              alt="Jenish Togadiya"
+              width={400}
+              height={400}
+              className={styles.heroImage}
+              priority
+            />
+          </div>
+        </motion.div>
+
         <div className={styles.textWrapper}>
           {/* Title */}
           <motion.h1
@@ -18,7 +37,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Hey, I’m <span className={styles.accent}>Jenish 👋</span>
+            Hey, I'm <span className={styles.accent}>Jenish 👋</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -57,25 +76,6 @@ export default function HeroSection() {
           </motion.div>
         </div>
       </div>
-
-      {/* Profile Image */}
-      <motion.div
-        className={styles.heroImageContainer}
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-      >
-        <div className={styles.heroImageWrapper}>
-          <Image
-            src="/profile.png"
-            alt="Jenish Togadiya"
-            width={400}
-            height={400}
-            className={styles.heroImage}
-            priority
-          />
-        </div>
-      </motion.div>
     </section>
   );
 }

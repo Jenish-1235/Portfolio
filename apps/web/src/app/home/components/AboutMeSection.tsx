@@ -37,7 +37,7 @@ export default function AboutMeSection() {
             viewport={{ once: false, amount: 0.3 }}
           >
             <div className={styles.profileImage}>
-              <img src="/profile.png" alt="Jenish Togadiya" />
+              <img src="/profile-2.jpeg" alt="Jenish Togadiya" />
             </div>
           </motion.div>
           
@@ -55,3 +55,5 @@ export default function AboutMeSection() {
     </div>
   );
 }
+
+
