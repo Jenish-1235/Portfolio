@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import styles from './ExperienceSection.module.css';
-import experiences from '@/app/home/data/experiences.json';
+import experiences from '@/data/experiences.json'; // Adjust the import path as necessary
 import { motion, useInView, useScroll, useSpring, Variants } from 'framer-motion';
 import useIsMobile from '@/hooks/useIsMobile';
 

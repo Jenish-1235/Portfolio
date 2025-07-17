@@ -1,40 +1,41 @@
 {
-  "skills": [
-    {
-      "category": "Languages & Frameworks",
-      "technologies": [
-        "Java", "Kotlin", "Android (Native)", "Go", "Python", "React", "TypeScript", "Rust", "Swift"
-      ]
-    },
-    {
-      "category": "Databases",
-      "technologies": [
-        "PostgreSQL", "MySQL", "NoSQL"
-      ]
-    },
-    {
-      "category": "Cloud & DevOps",
-      "technologies": [
-        "AWS", "GCP", "Docker", "Kubernetes", "Jenkins", "Redis", "Linux", "Git"
-      ]
-    },
-    {
-      "category": "AI & Machine Learning",
-      "technologies": [
-        "TensorFlow", "spaCy", "Vosk", "Resemblyzer", "NLP", "Reinforcement Learning"
-      ]
-    },
-    {
-      "category": "System Design & Architecture",
-      "technologies": [
-        "Distributed Systems", "Microservices", "Scalability", "High Availability", "OOP"
-      ]
-    },
-    {
-      "category": "Core Competencies",
-      "technologies": [
-        "Problem Solving", "Team Collaboration", "Project Management", "UI/UX Principles"
-      ]
-    }
-  ]
-}
+    "skills": [
+      {
+        "category": "Languages & Frameworks",
+        "technologies": [
+          "Java", "Kotlin", "Go", "Python", "TypeScript", "Rust"
+        ]
+      },
+      {
+        "category": "Mobile & Frontend",
+        "technologies": [
+          "Android (Native)", "Kotlin Multiplatform", "Jetpack Compose", "XML", "React", "Next.js", "Tailwind CSS"
+        ]
+      },
+      {
+        "category": "Backend, APIs & Databases",
+        "technologies": [
+          "Node.js", "Spring Boot", "FastAPI", "Firebase", "PostgreSQL", "MySQL", "Redis", "Cassandra", "SQLite"
+        ]
+      },
+      {
+        "category": "System Design & Principles",
+        "technologies": [
+          "Distributed Systems", "High Availability", "Load Balancing", "Event-Driven Architecture", "CQRS", "API Design"
+        ]
+      },
+      {
+        "category": "Cloud, DevOps & Tools",
+        "technologies": [
+          "AWS", "GCP", "Docker", "Kubernetes", "Jenkins", "Linux", "Git", "GitHub Actions", "CI/CD"
+        ]
+      },
+      {
+        "category": "AI, ML & LLMs",
+        "technologies": [
+          "Vertex AI", "Prompt Engineering", "LLMs", "Vosk", "Resemblyzer", "Reinforcement Learning"
+        ]
+      }
+    ]
+  }
+  

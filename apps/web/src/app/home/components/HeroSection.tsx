@@ -47,8 +47,8 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            A system designer, builder & writer — crafting experiences in code,
-            infra, and words.
+            I engineer systems — across backend, mobile, and infrastructure —
+            with reliability and intent.
           </motion.p>
 
           {/* CTA Buttons */}

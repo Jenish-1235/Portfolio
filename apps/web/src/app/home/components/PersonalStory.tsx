@@ -25,7 +25,9 @@ export default function PersonalStory() {
           viewport={{ once: false, amount: 0.3 }}
         >
           <p>
-            I&apos;m <strong>Jenish Togadiya</strong> — a passionate system designer, builder, and lifelong learner who thrives at the intersection of <em>code, infrastructure, and design</em>.
+            I&apos;m <strong>Jenish Togadiya</strong> — a systems-minded
+            engineer exploring how code, infrastructure, and mobile technologies
+            come together to solve real-world problems.
           </p>
         </motion.div>
 
@@ -37,19 +39,10 @@ export default function PersonalStory() {
           viewport={{ once: false, amount: 0.3 }}
         >
           <p>
-            My journey began with a curiosity about how things work behind the scenes. What started as simple HTML pages evolved into architecting <strong>scalable microservices</strong> handling millions of requests daily.
-          </p>
-        </motion.div>
-
-        <motion.div
-          className={styles.storyBlock}
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: false, amount: 0.3 }}
-        >
-          <p>
-            I believe in creating <em>developer experiences that feel magical</em> — where complex systems become intuitive tools that empower teams to build amazing things.
+            My journey began with curiosity — building static pages, scripting
+            tools, and eventually diving into scalable systems. Along the way,
+            I’ve developed full-stack applications, mobile platforms, and
+            backend systems built with performance and clarity in mind.
           </p>
         </motion.div>
 
@@ -61,7 +54,10 @@ export default function PersonalStory() {
           viewport={{ once: false, amount: 0.3 }}
         >
           <p>
-            When I&apos;m not coding, you&apos;ll find me contributing to <strong>open-source projects</strong>, mentoring fellow developers, or exploring the latest technologies that push the boundaries of what&apos;s possible.
+            I care deeply about engineering systems that are not just functional
+            — but maintainable, observable, and thoughtfully designed. And I
+            share what I learn along the way, whether through code,
+            documentation, or mentoring.
           </p>
         </motion.div>
 
@@ -74,9 +70,9 @@ export default function PersonalStory() {
         >
           <h4>Currently focusing on:</h4>
           <ul>
-            <li>Building next-generation developer tools</li>
-            <li>Exploring AI/ML integration in web applications</li>
-            <li>Contributing to the open-source community</li>
+            <li>Engineering reliable full-stack and mobile applications</li>
+            <li>Exploring AI/ML applications in developer workflows</li>
+            <li>Contributing to and growing open-source ecosystems</li>
           </ul>
         </motion.div>
       </div>

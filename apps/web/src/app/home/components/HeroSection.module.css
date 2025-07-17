@@ -65,6 +65,26 @@
     }
 }
 
+.para {
+    font-size: 0.6rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-top: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+    .para {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .para {
+        font-size: 1rem;
+    }
+}
+
 .accent {
     color: var(--accent-primary);
 }

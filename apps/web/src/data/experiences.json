@@ -1,0 +1,35 @@
+{
+  "experiences": [
+    {
+      "id": 1,
+      "company": "Freelance",
+      "position": "Full-Stack & Mobile Developer",
+      "duration": "Jan 2022 - Present",
+      "period": "2022-Present",
+      "type": "current",
+      "description": "Built Android and web applications across multiple client projects.",
+      "achievements": [
+        "Led development of full-stack solutions using React and Spring Boot",
+        "Handled client communication from ideation to deployment"
+      ],
+      "technologies": ["React", "Spring Boot", "Firebase", "Android", "PostgreSQL"],
+      "logo": "🛠️"
+    },
+    {
+      "id": 2,
+      "company": "Scaler (InterviewBit)",
+      "position": "Linux & DevOps Problem Setter",
+      "duration": "May 2025 - July 2025",
+      "period": "2025-Present",
+      "type": "current",
+      "description": "Designing Linux and DevOps challenges for learners with 0–3 years of experience.",
+      "achievements": [
+        "Created quizzes, assignments, and contest problems for DevOps curriculum",
+        "Crafted learning experiences using real-world system design knowledge"
+      ],
+      "technologies": ["Linux", "Docker", "Kubernetes", "Git", "Jenkins"],
+      "logo": "🧩"
+    }
+    
+  ]
+}
