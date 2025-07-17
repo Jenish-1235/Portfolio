@@ -1,0 +1,40 @@
+{
+  "skills": [
+    {
+      "category": "Languages & Frameworks",
+      "technologies": [
+        "Java", "Kotlin", "Android (Native)", "Go", "Python", "React", "TypeScript", "Rust", "Swift"
+      ]
+    },
+    {
+      "category": "Databases",
+      "technologies": [
+        "PostgreSQL", "MySQL", "NoSQL"
+      ]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "technologies": [
+        "AWS", "GCP", "Docker", "Kubernetes", "Jenkins", "Redis", "Linux", "Git"
+      ]
+    },
+    {
+      "category": "AI & Machine Learning",
+      "technologies": [
+        "TensorFlow", "spaCy", "Vosk", "Resemblyzer", "NLP", "Reinforcement Learning"
+      ]
+    },
+    {
+      "category": "System Design & Architecture",
+      "technologies": [
+        "Distributed Systems", "Microservices", "Scalability", "High Availability", "OOP"
+      ]
+    },
+    {
+      "category": "Core Competencies",
+      "technologies": [
+        "Problem Solving", "Team Collaboration", "Project Management", "UI/UX Principles"
+      ]
+    }
+  ]
+}

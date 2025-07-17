@@ -1,0 +1,13 @@
+.ctaSecondary {
+    background: transparent;
+    color: var(--accent-primary);
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--accent-primary);
+    border-radius: var(--radius-xl);
+    transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.ctaSecondary:hover {
+    background: var(--accent-primary-alpha);
+    transform: scale(1.05);
+}
