@@ -19,6 +19,15 @@ export default function AboutMeSection() {
     <div className={styles.aboutContainer} ref={containerRef}>
       {/* Section 1: Personal Story */}
       <section className={styles.personalStorySection}>
+        <motion.h2
+          className={styles.title}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          viewport={{ once: false, amount: 0.2 }}
+        >
+          Who I Am & What I Do
+        </motion.h2>
         <div className={styles.personalSection}>
           <motion.div
             className={styles.profileImageContainer}
@@ -28,10 +37,15 @@ export default function AboutMeSection() {
             viewport={{ once: false, amount: 0.3 }}
           >
             <div className={styles.profileImage}>
-              <Image src="/profile-2.jpeg" alt="Jenish Togadiya" layout="fill" objectFit="cover" />
+              <Image
+                src="/profile-2.jpeg"
+                alt="Jenish Togadiya"
+                layout="fill"
+                objectFit="cover"
+              />
             </div>
           </motion.div>
-          
+
           <motion.div
             className={styles.personalStoryContainer}
             initial={{ opacity: 0, x: 50 }}
@@ -46,7 +60,7 @@ export default function AboutMeSection() {
 
       {/* Section 2: Skills */}
       <section className={styles.skillsSection}>
-        <SkillsSection/>
+        <SkillsSection />
       </section>
 
       {/* Section 3: Experience */}

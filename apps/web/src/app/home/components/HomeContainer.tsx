@@ -1,11 +1,13 @@
 // components/HomeContainer.tsx
+"use client";
+
 export default function HomeContainer({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <main className="w-full overflow-y-auto bg-bg-primary text-text-primary" style={{ height: '100vh', scrollSnapType: 'y mandatory' }}>
+    <main className="w-full bg-bg-primary text-text-primary">
       {children}
     </main>
   );

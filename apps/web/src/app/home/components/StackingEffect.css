@@ -1,0 +1,21 @@
+.stacking-container {
+    position: relative;
+  }
+  
+  .sticky-hero {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .scroll-over-content {
+    position: relative;
+    z-index: 10;
+    background-color: var(--bg-primary); /* Ensure it hides the hero section */
+  }
+  
+  /* Add a spacer to create scroll room for the sticky effect */
+  .scroll-spacer {
+    height: 10vh;
+  }

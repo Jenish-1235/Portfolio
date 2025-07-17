@@ -4,9 +4,9 @@
     scroll-snap-align: start;
 }
 
+
 .personalStorySection {
     width: 100%;
-    min-height: 100vh;
     padding: 6rem 2rem 2rem;
     background-color: var(--bg-primary);
     color: var(--text-primary);
@@ -17,9 +17,18 @@
     box-sizing: border-box;
 }
 
+.title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4rem;
+    text-align: center;
+    z-index: 2;
+    letter-spacing: -1px;
+}
+
 .skillsSection {
     width: 100%;
-    min-height: 100vh;
     padding: 6rem 2rem 2rem;
     background-color: var(--bg-primary);
     color: var(--text-primary);
@@ -32,7 +41,6 @@
 
 .experienceSection {
     width: 100%;
-    min-height: 100vh;
     padding: 6rem 2rem 2rem;
     background-color: var(--bg-primary);
     color: var(--text-primary);
