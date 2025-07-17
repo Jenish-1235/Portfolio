@@ -19,7 +19,7 @@ export default function HeroSection() {
         >
           <div className={styles.heroImageWrapper}>
             <Image
-              src="/profile.png"
+              src="/profile.jpeg"
               alt="Jenish Togadiya"
               width={400}
               height={400}
