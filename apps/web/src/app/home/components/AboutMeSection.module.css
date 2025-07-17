@@ -1,7 +1,8 @@
 .aboutContainer {
     width: 100%;
-    height: 300vh; /* 3 sections */
+    height: 100vh; /* 3 sections */
     position: relative;
+    padding: 2rem;
 }
 
 .section {
