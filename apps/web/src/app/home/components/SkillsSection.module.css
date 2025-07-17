@@ -1,0 +1,102 @@
+.skillsSection {
+    padding: 2rem;
+    position: relative;
+    background: transparent;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .skillsSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(ellipse at 30% 20%, rgba(118, 75, 224, 0.1), transparent 70%),
+      radial-gradient(ellipse at 70% 80%, rgba(52, 146, 235, 0.1), transparent 70%);
+    z-index: 1;
+    opacity: 0.8;
+    filter: blur(50px);
+  }
+  
+  .title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4rem;
+    text-align: center;
+    z-index: 2;
+    letter-spacing: -1px;
+  }
+  
+  .skillsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    z-index: 2;
+  }
+  
+  .skillCard {
+    background: rgba(22, 24, 29, 0.6);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .skillCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .categoryTitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--accent-color-light);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+  }
+  
+  .technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  
+  .techItem {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: default;
+    font-weight: 500;
+  }
+  
+  @media (max-width: 768px) {
+    .title {
+      font-size: 2.8rem;
+    }
+  
+    .skillsGrid {
+      grid-template-columns: 1fr;
+    }
+  
+    .categoryTitle {
+      font-size: 1.6rem;
+    }
+  }
+  

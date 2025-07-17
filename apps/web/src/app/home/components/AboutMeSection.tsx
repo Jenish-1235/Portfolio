@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import styles from "./AboutMeSection.module.css";
 import PersonalStory from "./PersonalStory";
+import SkillsSection from "./SkillsSection";
 
 export default function AboutMeSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -16,9 +17,8 @@ export default function AboutMeSection() {
 
   useEffect(() => {
     const unsubscribe = scrollYProgress.on("change", (latest) => {
-      if (latest < 0.33) setCurrentSection(0);
-      else if (latest < 0.66) setCurrentSection(1);
-      else setCurrentSection(2);
+      if (latest < 0.5) setCurrentSection(0);
+      else setCurrentSection(1);
     });
 
     return () => unsubscribe();
@@ -27,7 +27,7 @@ export default function AboutMeSection() {
   return (
     <div className={styles.aboutContainer} ref={containerRef}>
       {/* Section 1: Personal Story */}
-      <section className={styles.section}>
+      <section className={styles.personalStorySection}>
         <div className={styles.personalSection}>
           <motion.div
             className={styles.profileImageContainer}
@@ -51,6 +51,11 @@ export default function AboutMeSection() {
             <PersonalStory />
           </motion.div>
         </div>
+      </section>
+
+      {/* Section 2: Skills */}
+      <section className={styles.skillsSection}>
+        <SkillsSection scrollYProgress={scrollYProgress} />
       </section>
     </div>
   );

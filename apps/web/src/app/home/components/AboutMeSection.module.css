@@ -1,26 +1,32 @@
 .aboutContainer {
     width: 100%;
-    min-height: 100vh;
     position: relative;
+    scroll-snap-align: start;
 }
 
-.section {
+.personalStorySection {
     width: 100%;
     min-height: 100vh;
-    /* Ensure content never hides behind navbar */
-    padding-top: calc(4rem + 2rem); /* navbar height + safe spacing */
-    padding-bottom: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding: 6rem 2rem 2rem;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    position: relative;
+    box-sizing: border-box;
+}
+
+.skillsSection {
+    width: 100%;
+    min-height: 100vh;
+    padding: 6rem 2rem 2rem;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
 }
 
@@ -35,7 +41,6 @@
     margin: 0 auto;
     padding: 0 2rem;
     height: auto;
-    min-height: calc(100vh - 8rem); /* Full height minus padding */
 }
 
 .profileImageContainer {
@@ -82,72 +87,12 @@
     overflow-wrap: break-word;
 }
 
-/* Skills Section */
-.skillsSection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 4rem;
-    max-width: 1200px;
-    width: 100%;
-    margin-top: 0;
-}
-
-.skillsTextContainer {
-    flex: 1;
-    max-width: 500px;
-    padding: 2rem;
-    background: var(--bg-secondary);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-color);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-.skillsTextContainer h3 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: var(--accent-primary);
-    margin-bottom: 1.5rem;
-}
-
-.skillsTextContainer p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-}
-
-.skillsCloudContainer {
-    flex: 1;
-    max-width: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-    background: var(--bg-secondary);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-color);
-}
-
-/* Experience Timeline Section */
-.experienceSection {
-    width: 100%;
-    max-width: 1200px;
-    margin-top: 0;
-    padding: 2rem;
-    background: var(--bg-secondary);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-color);
-}
-
 /* Responsive Design */
 @media screen and (max-width: 1300px) {
     .personalSection {
         flex-direction: column;
         gap: 3rem;
         width: 85%;
-        min-height: calc(100vh - 8rem);
     }
     
     .profileImageContainer {
@@ -169,17 +114,15 @@
 
 @media screen and (max-width: 1024px) {
     .section {
-        padding-top: calc(4rem + 2rem); /* Mobile navbar height + spacing */
+        padding-top: 6rem;
         padding-left: 1rem;
         padding-right: 1rem;
     }
     
-    .personalSection,
-    .skillsSection {
+    .personalSection {
         flex-direction: column;
         gap: 2rem;
         width: 90%;
-        min-height: calc(100vh - 8rem);
     }
     
     .profileImageContainer {
@@ -201,9 +144,7 @@
 
 @media screen and (max-width: 768px) {
     .section {
-        padding-top: calc(4rem + 1.5rem);
-        padding-left: 1rem;
-        padding-right: 1rem;
+        padding-top: 5.5rem;
     }
     
     .personalSection {
@@ -211,7 +152,6 @@
         gap: 2rem;
         width: 95%;
         padding: 0 1rem;
-        min-height: calc(100vh - 7rem);
     }
     
     .profileImageContainer {
@@ -225,15 +165,14 @@
     }
     
     .personalStoryContainer {
-        width: 100%;
-        max-width: 500px;
+        max-width: 100%;
         padding: 1.5rem;
     }
 }
 
 @media screen and (max-width: 480px) {
     .section {
-        padding-top: calc(3rem + 1.5rem);
+        padding-top: 4.5rem;
         padding-left: 0.75rem;
         padding-right: 0.75rem;
     }
@@ -241,7 +180,6 @@
     .personalSection {
         width: 95%;
         padding: 0 0.5rem;
-        min-height: calc(100vh - 6rem);
     }
     
     .profileImage {
@@ -252,12 +190,5 @@
     .personalStoryContainer {
         padding: 1rem;
         max-width: 100%;
-    }
-    
-    .personalStoryContainer,
-    .skillsTextContainer,
-    .skillsCloudContainer,
-    .experienceSection {
-        padding: 1rem;
     }
 }
