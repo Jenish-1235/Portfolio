@@ -37,7 +37,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Hey, I'm <span className={styles.accent}>Jenish 👋</span>
+            Hey, I&apos;m <span className={styles.accent}>Jenish 👋</span>
           </motion.h1>
 
           {/* Subtitle */}

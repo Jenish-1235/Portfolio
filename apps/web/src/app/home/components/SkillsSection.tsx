@@ -1,9 +1,14 @@
 import skills from '@/data/skills.json';
 import styles from './SkillsSection.module.css';
-import { motion, MotionValue, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import React, { useRef } from 'react';
 
-const SkillsSection = ({ scrollYProgress }: { scrollYProgress: MotionValue<number> }) => {
+interface SkillCategory {
+  category: string;
+  technologies: string[];
+}
+
+const SkillsSection = () => {
   const ref = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -59,7 +64,7 @@ const SkillsSection = ({ scrollYProgress }: { scrollYProgress: MotionValue<numbe
   );
 };
 
-const SkillCard = ({ skillCategory, index }: { skillCategory: any, index: number }) => {
+const SkillCard = ({ skillCategory, index }: { skillCategory: SkillCategory, index: number }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const mouseX = useSpring(x, { stiffness: 50, damping: 20 });

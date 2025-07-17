@@ -25,7 +25,7 @@ export default function PersonalStory() {
           viewport={{ once: false, amount: 0.3 }}
         >
           <p>
-            I'm <strong>Jenish Togadiya</strong> — a passionate system designer, builder, and lifelong learner who thrives at the intersection of <em>code, infrastructure, and design</em>.
+            I&apos;m <strong>Jenish Togadiya</strong> — a passionate system designer, builder, and lifelong learner who thrives at the intersection of <em>code, infrastructure, and design</em>.
           </p>
         </motion.div>
 
@@ -61,7 +61,7 @@ export default function PersonalStory() {
           viewport={{ once: false, amount: 0.3 }}
         >
           <p>
-            When I'm not coding, you'll find me contributing to <strong>open-source projects</strong>, mentoring fellow developers, or exploring the latest technologies that push the boundaries of what's possible.
+            When I&apos;m not coding, you&apos;ll find me contributing to <strong>open-source projects</strong>, mentoring fellow developers, or exploring the latest technologies that push the boundaries of what&apos;s possible.
           </p>
         </motion.div>
 
