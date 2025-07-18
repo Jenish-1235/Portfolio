@@ -4,6 +4,7 @@ import { Project } from ".contentlayer/generated";
 import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./ProjectShowcaseSection.module.css";
 import AnimatedCurve from "./AnimatedCurve";
 
@@ -155,21 +156,21 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          {project.liveUrl && (
-            <motion.a
-              href={project.liveUrl}
+          {/* Learn More button - Always present */}
+          <Link href={`/projects/${project.slug}`}>
+            <motion.div
               className={styles.projectLink}
-              target="_blank"
-              rel="noopener noreferrer"
               whileHover={{ x: 5 }}
               whileTap={{ scale: 0.98 }}
             >
-              View Live
+              Learn More
               <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="none">
                 <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </motion.a>
-          )}
+            </motion.div>
+          </Link>
+
+          {/* Source Code button - Always present */}
           {project.github && (
             <motion.a
               href={project.github}
@@ -180,6 +181,28 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
               whileTap={{ scale: 0.98 }}
             >
               Source Code
+              <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="none">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </motion.a>
+          )}
+
+          {/* Live URL button - Optional, only if available */}
+          {project.liveUrl && (
+            <motion.a
+              href={project.liveUrl}
+              className={`${styles.projectLink} ${styles.live}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ x: 5 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              View Live
+              <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="none">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <polyline points="15,3 21,3 21,9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <line x1="10" y1="14" x2="21" y2="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </motion.a>
           )}
         </motion.div>

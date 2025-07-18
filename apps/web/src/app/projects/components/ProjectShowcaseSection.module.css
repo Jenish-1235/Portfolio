@@ -257,6 +257,21 @@
   border-color: var(--text-secondary);
 }
 
+.projectLink.live {
+  background: transparent;
+  color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+}
+
+.projectLink.live::before {
+  background: var(--accent-secondary);
+}
+
+.projectLink.live:hover {
+  color: var(--text-inverse);
+  border-color: var(--accent-secondary);
+}
+
 .linkIcon {
   width: 1rem;
   height: 1rem;
