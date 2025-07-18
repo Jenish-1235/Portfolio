@@ -1,12 +1,12 @@
 "use client";
 
 import { Project } from ".contentlayer/generated";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./ProjectShowcaseSection.module.css";
 import AnimatedCurve from "./AnimatedCurve";
+import ProjectModal from "./ProjectModal";
 
 interface ProjectShowcaseSectionProps {
   projects: Project[];
@@ -16,38 +16,52 @@ const ProjectShowcaseSection = ({
   projects,
 }: ProjectShowcaseSectionProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
 
+  const openModal = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
   return (
-    <section
-      ref={containerRef}
-      id="project-showcase"
-      className={styles.showcase}
-    >
-      <AnimatedCurve containerRef={containerRef} />
-      <div className={styles.container}>
-        <div className={styles.sectionHeader}>
-          <motion.h2 
-            className={styles.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            Featured Projects
-          </motion.h2>
-          <motion.p 
-            className={styles.description}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-            viewport={{ once: true }}
-          >
-            A curated selection of my latest work, showcasing innovation and craftsmanship.
-          </motion.p>
+    <>
+      <section
+        ref={containerRef}
+        id="project-showcase"
+        className={styles.showcase}
+      >
+        <AnimatedCurve containerRef={containerRef} />
+        <div className={styles.container}>
+          <div className={styles.sectionHeader}>
+            <motion.h2 
+              className={styles.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              Featured Projects
+            </motion.h2>
+            <motion.p 
+              className={styles.description}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              viewport={{ once: true }}
+            >
+              A curated selection of my latest work, showcasing innovation and craftsmanship.
+            </motion.p>
         </div>
 
         <div className={styles.projectGrid}>
@@ -56,20 +70,29 @@ const ProjectShowcaseSection = ({
               key={project.slug} 
               project={project} 
               index={index}
+              onLearnMore={() => openModal(project)}
             />
           ))}
         </div>
       </div>
     </section>
+
+    <ProjectModal 
+      project={selectedProject}
+      isOpen={isModalOpen}
+      onClose={closeModal}
+    />
+  </>
   );
 };
 
 interface ProjectCardProps {
   project: Project;
   index: number;
+  onLearnMore: () => void;
 }
 
-const ProjectCard = ({ project, index }: ProjectCardProps) => {
+const ProjectCard = ({ project, index, onLearnMore }: ProjectCardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: cardRef,
@@ -97,10 +120,6 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
         ease: [0.25, 0.4, 0.25, 1]
       }}
       viewport={{ once: true, margin: "-100px" }}
-      whileHover={{ 
-        scale: 1.02,
-        transition: { duration: 0.3, ease: "easeOut" }
-      }}
     >
       <div className={styles.imageContainer}>
         <motion.div
@@ -156,19 +175,18 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          {/* Learn More button - Always present */}
-          <Link href={`/projects/${project.slug}`}>
-            <motion.div
-              className={styles.projectLink}
-              whileHover={{ x: 5 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Learn More
-              <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="none">
-                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </motion.div>
-          </Link>
+          {/* Learn More button - Opens modal */}
+          <motion.button
+            className={styles.projectLink}
+            onClick={onLearnMore}
+            whileHover={{ x: 5 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Learn More
+            <svg className={styles.linkIcon} viewBox="0 0 24 24" fill="none">
+              <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </motion.button>
 
           {/* Source Code button - Always present */}
           {project.github && (

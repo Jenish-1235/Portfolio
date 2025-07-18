@@ -213,12 +213,14 @@
   font-weight: 600;
   color: var(--accent-primary);
   text-decoration: none;
-  padding: 0.75rem 1.5rem;
+  background: transparent;
   border: 2px solid var(--accent-primary);
+  padding: 0.75rem 1.5rem;
   border-radius: 2rem;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .projectLink::before {

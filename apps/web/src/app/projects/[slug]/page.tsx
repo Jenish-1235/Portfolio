@@ -1,6 +1,7 @@
 import { allProjects } from ".contentlayer/generated";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import NavBar from "../../common/NavBar";
 import Footer from "../../common/Footer";
 
@@ -111,10 +112,13 @@ export default async function ProjectDetail({ params }: PageProps) {
             {/* Project Cover Image */}
             {project.coverImage && (
               <div className="mb-12">
-                <img
+                <Image
                   src={project.coverImage}
                   alt={project.title}
+                  width={800}
+                  height={500}
                   className="w-full h-96 object-cover rounded-xl shadow-lg"
+                  priority
                 />
               </div>
             )}
