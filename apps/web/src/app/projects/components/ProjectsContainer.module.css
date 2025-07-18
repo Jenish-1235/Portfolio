@@ -1,0 +1,33 @@
+.container {
+  padding: var(--space-3xl) var(--space-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--text-primary);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-3xl);
+}
+
+.title {
+  font-family: "Clash Display", sans-serif;
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+  background: linear-gradient(
+    to right,
+    var(--accent-secondary),
+    var(--accent-primary)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}

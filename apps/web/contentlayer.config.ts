@@ -36,14 +36,29 @@ const Project = defineDocumentType(() => ({
     title: { type: "string", required: true },
     date: { type: "date", required: true },
     slug: { type: "string", required: true },
-    description: { type: "string", required: false },
+    category: { type: "string", required: true },
+    coverImage: { type: "string", required: true },
+    description: { type: "string", required: true },
+    techStack: { type: "list", of: { type: "string" }, required: true },
+    liveUrl: { type: "string", required: false },
     github: { type: "string", required: false },
-    tags: { type: "list", of: { type: "string" } }
   }
 }));
 
 export default makeSource({
   contentDirPath: path.join(process.cwd(), "../../content"),
   documentTypes: [Blog, Paper, Project],
-  mdx: { remarkPlugins: [remarkGfm] },
+  mdx: {
+    remarkPlugins: [remarkGfm],
+    esbuildOptions(options) {
+      options.external = [
+        ...(options.external ?? []),
+        "react",
+        "react-dom",
+        "react/jsx-runtime",
+        "react/jsx-dev-runtime",
+      ];
+      return options;
+    },
+  },
 });

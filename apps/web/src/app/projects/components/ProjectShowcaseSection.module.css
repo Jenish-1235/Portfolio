@@ -1,0 +1,113 @@
+.showcase {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3xl);
+}
+
+.projectCard {
+  background-color: var(--card-background);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  transition: transform var(--transition-normal),
+    box-shadow var(--transition-normal);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+}
+
+.projectCard:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.cardLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-color: var(--bg-tertiary);
+}
+
+.projectImage {
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.projectCard:hover .projectImage {
+  transform: scale(1.05);
+}
+
+.content {
+  padding: var(--space-xl);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-md);
+}
+
+.projectTitle {
+  font-family: "Clash Display", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.projectYear {
+  background-color: var(--bg-tertiary);
+  color: var(--text-secondary);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 500;
+  flex-shrink: 0;
+  margin-left: var(--space-md);
+}
+
+.projectCategory {
+  font-size: 1rem;
+  color: var(--accent-secondary);
+  margin-bottom: var(--space-md);
+  font-weight: 500;
+}
+
+.projectDescription {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.techTag {
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  border: 1px solid var(--border-secondary);
+}
+
+@media (max-width: 768px) {
+  .imageContainer {
+    height: 300px;
+  }
+
+  .projectTitle {
+    font-size: 1.5rem;
+  }
+
+  .content {
+    padding: var(--space-lg);
+  }
+}
