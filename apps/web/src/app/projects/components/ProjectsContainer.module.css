@@ -1,31 +1,9 @@
 .container {
-  /* The padding is now handled by the hero and showcase sections */
+  /* Remove any constraints that might interfere with GSAP pinning */
+  width: 100%;
+  min-height: 100vh;
   color: var(--text-primary);
+  /* Ensure proper document flow for the showcase section */
 }
 
-.header {
-  text-align: center;
-  margin-bottom: var(--space-3xl);
-}
-
-.title {
-  font-family: "Clash Display", sans-serif;
-  font-size: 3.5rem;
-  font-weight: 600;
-  margin-bottom: var(--space-sm);
-  background: linear-gradient(
-    to right,
-    var(--accent-secondary),
-    var(--accent-primary)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.subtitle {
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
-}
+/* Old header styles removed as they're no longer used in the new design */
