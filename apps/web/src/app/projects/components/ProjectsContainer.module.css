@@ -1,7 +1,5 @@
 .container {
-  padding: var(--space-3xl) var(--space-xl);
-  max-width: 1200px;
-  margin: 0 auto;
+  /* The padding is now handled by the hero and showcase sections */
   color: var(--text-primary);
 }
 

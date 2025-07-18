@@ -1,0 +1,119 @@
+.hero {
+  height: 100vh;
+  min-height: 600px; /* Prevents content from crushing on short screens */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.textContainer {
+  margin-bottom: 20vh; /* Pushes text up from the bottom */
+  width: 100%;
+}
+
+.animatingTextWrapper {
+  /* This wrapper prevents the transform from being distorted by flex properties */
+  width: 100%;
+}
+
+.title {
+  font-family: "Clash Display", sans-serif;
+  /* Fluid typography: min 3rem, preferred 8vw, max 4.5rem */
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  line-height: 1.1;
+}
+
+.subtitle {
+  /* Fluid typography: min 1rem, preferred 2.5vw, max 1.25rem */
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 35em; /* Use em for responsive max-width relative to font size */
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.ctaContainer {
+  position: absolute;
+  bottom: 10vh;
+  /* Use left/right for robust positioning instead of width + transform */
+  left: var(--space-xl);
+  right: var(--space-xl);
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; /* Allow buttons to wrap on medium-sized screens if needed */
+  gap: var(--space-md);
+}
+
+.scrollIndicator {
+  position: absolute;
+  bottom: 3vh;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .hero {
+    padding: var(--space-lg);
+  }
+
+  .textContainer {
+    margin-bottom: 22vh;
+  }
+
+  .subtitle {
+    max-width: 90%;
+  }
+
+  .ctaContainer {
+    bottom: 10vh; /* Adjust vertical position for tablets */
+    left: var(--space-lg);
+    right: var(--space-lg);
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .textContainer {
+    margin-bottom: 28vh; /* Increased margin to prevent overlap */
+  }
+
+  .ctaContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    bottom: 10vh; /* Give more space from the bottom */
+  }
+
+  .ctaContainer > * {
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+  }
+}
