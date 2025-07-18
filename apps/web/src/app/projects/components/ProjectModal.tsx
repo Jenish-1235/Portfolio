@@ -16,28 +16,39 @@ interface ProjectModalProps {
 const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
   const router = useRouter();
   const [shareButtonText, setShareButtonText] = useState("Share");
+  const [isIconChanged, setIsIconChanged] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  // Ensure we're on the client side to prevent hydration mismatches
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Handle share URL functionality
   const handleShare = useCallback(async () => {
-    if (!project) return;
+    if (!project || !isClient) return;
     
     const shareUrl = `${window.location.origin}/projects/${project.slug}`;
     
     try {
       await navigator.clipboard.writeText(shareUrl);
       setShareButtonText("URL Copied!");
+      setIsIconChanged(true);
       
-      // Reset button text after 2 seconds
+      // Reset button text and icon after 2.5 seconds
       setTimeout(() => {
         setShareButtonText("Share");
-      }, 2000);
+        setIsIconChanged(false);
+      }, 2500);
     } catch (err) {
       // Fallback for browsers that don't support clipboard API
       console.error("Failed to copy URL:", err);
       setShareButtonText("Copy failed");
+      setIsIconChanged(true);
       setTimeout(() => {
         setShareButtonText("Share");
-      }, 2000);
+        setIsIconChanged(false);
+      }, 2500);
     }
   }, [project]);
 
@@ -57,18 +68,10 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
       document.addEventListener("keydown", handleKeyDown);
       window.addEventListener("popstate", handlePopState);
       document.body.style.overflow = "hidden";
-      
-      // Update URL without navigation
-      if (project) {
-        router.push(`/projects?modal=${project.slug}`, { scroll: false });
-      }
     } else {
       document.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("popstate", handlePopState);
       document.body.style.overflow = "unset";
-      
-      // Reset URL
-      router.push("/projects", { scroll: false });
     }
 
     return () => {
@@ -76,14 +79,34 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
       window.removeEventListener("popstate", handlePopState);
       document.body.style.overflow = "unset";
     };
-  }, [isOpen, project, router, handleKeyDown, handlePopState]);
+  }, [isOpen, handleKeyDown, handlePopState]);
 
-  if (!project) return null;
+  // Separate effect for URL management to avoid unnecessary re-renders
+  useEffect(() => {
+    if (!isClient) return; // Only run on client
+    
+    if (isOpen && project) {
+      // Only update URL when modal opens, not on every render
+      const currentUrl = new URL(window.location.href);
+      if (!currentUrl.searchParams.has('modal')) {
+        router.push(`/projects?modal=${project.slug}`, { scroll: false });
+      }
+    } else if (!isOpen) {
+      // Only reset URL when modal closes
+      const currentUrl = new URL(window.location.href);
+      if (currentUrl.searchParams.has('modal')) {
+        router.push("/projects", { scroll: false });
+      }
+    }
+  }, [isOpen, project?.slug, router, isClient]);
+
+  // Don't render anything during SSR to prevent hydration issues
+  if (!isClient || !project) return null;
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isOpen && (
-        <div className={styles.modalOverlay}>
+        <div key={`modal-${project.slug}`} className={styles.modalOverlay}>
           {/* Backdrop - Full screen blur that appears first and fades with modal */}
           <motion.div
             className={styles.backdrop}
@@ -123,9 +146,17 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
                 onClick={handleShare}
                 aria-label="Share project URL"
               >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
-                </svg>
+                {isIconChanged ? (
+                  // Checkmark icon when copied
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  // Share icon by default
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                  </svg>
+                )}
                 <span className={styles.buttonText}>{shareButtonText}</span>
               </button>
 

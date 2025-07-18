@@ -141,7 +141,7 @@ const ProjectHeroSection = () => {
               skew: titleSkew,
             }}
           >
-            Selected Works
+            From Thought to Flow
           </motion.h1>
         </div>
         <div className={styles.animatingTextWrapper}>
@@ -155,8 +155,8 @@ const ProjectHeroSection = () => {
               skew: subtitleSkew,
             }}
           >
-            A collection of projects where I&apos;ve turned complex problems into
-            elegant, user-centric solutions.
+            A collection of projects where I&apos;ve turned complex problems
+            into elegant, user-centric solutions.
           </motion.p>
         </div>
       </div>
@@ -165,9 +165,7 @@ const ProjectHeroSection = () => {
         variants={fadeIn}
         style={{ opacity: ctaOpacity }}
       >
-        <PrimaryButton onClick={handleScroll}>
-          Explore Projects
-        </PrimaryButton>
+        <PrimaryButton onClick={handleScroll}>Explore Projects</PrimaryButton>
         <GhostButton>Get in Touch</GhostButton>
       </motion.div>
       <motion.div
