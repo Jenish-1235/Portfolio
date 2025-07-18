@@ -3,7 +3,7 @@
   min-height: 600px; /* Prevents content from crushing on short screens */
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center; /* Center content vertically */
   align-items: center;
   text-align: center;
   padding: var(--space-xl);
@@ -12,8 +12,11 @@
 }
 
 .textContainer {
-  margin-bottom: 20vh; /* Pushes text up from the bottom */
+  margin-bottom: 0; /* Remove bottom margin */
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .animatingTextWrapper {

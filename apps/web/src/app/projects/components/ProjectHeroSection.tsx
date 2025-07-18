@@ -11,6 +11,7 @@ import { FiArrowDown } from "react-icons/fi";
 import PrimaryButton from "@/app/common/PrimaryButton";
 import GhostButton from "@/app/common/GhostButton";
 import { useRef } from "react";
+import ParticleBackground from "./ParticleBackground";
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -127,6 +128,7 @@ const ProjectHeroSection = () => {
       initial="hidden"
       animate="visible"
     >
+      <ParticleBackground />
       <div className={styles.textContainer}>
         <div className={styles.animatingTextWrapper}>
           <motion.h1

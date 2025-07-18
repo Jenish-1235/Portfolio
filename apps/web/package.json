@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/slim": "^3.8.1",
     "contentlayer": "^0.3.4",
     "next": "^15.3.5",
     "next-contentlayer": "^0.3.4",
