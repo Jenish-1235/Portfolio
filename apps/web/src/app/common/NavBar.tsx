@@ -3,6 +3,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import styles from "./NavBar.module.css";
 
 export default function NavBar() {
@@ -68,11 +69,11 @@ export default function NavBar() {
                     ×
                   </button>
                   <ul className={styles.mobileNavList}>
-                    <li><a href="/projects" onClick={closeMenu}>Projects</a></li>
-                    <li><a href="/resume" onClick={closeMenu}>Resume</a></li>
-                    <li><a href="/blogs" onClick={closeMenu}>Blogs</a></li>
-                    <li><a href="/papers" onClick={closeMenu}>Papershelf</a></li>
-                    <li><a href="/now" onClick={closeMenu}>Now</a></li>
+                    <li><Link href="/projects" onClick={closeMenu}>Projects</Link></li>
+                    <li><Link href="/resume" onClick={closeMenu}>Resume</Link></li>
+                    <li><Link href="/blogs" onClick={closeMenu}>Blogs</Link></li>
+                    <li><Link href="/papers" onClick={closeMenu}>Papershelf</Link></li>
+                    <li><Link href="/now" onClick={closeMenu}>Now</Link></li>
                   </ul>
                 </motion.div>
               </motion.div>
@@ -89,11 +90,11 @@ export default function NavBar() {
           style={{ left: "50%" }}
         >
           <ul className={styles.navList}>
-            <li><a href="/projects">Projects</a></li>
-            <li><a href="/resume">Resume</a></li>
-            <li><a href="/blogs">Blogs</a></li>
-            <li><a href="/papers">Papershelf</a></li>
-            <li><a href="/now">Now</a></li>
+            <li><Link href="/projects">Projects</Link></li>
+            <li><Link href="/resume">Resume</Link></li>
+            <li><Link href="/blogs">Blogs</Link></li>
+            <li><Link href="/papers">Papershelf</Link></li>
+            <li><Link href="/now">Now</Link></li>
           </ul>
         </motion.nav>
       )}

@@ -1,7 +1,7 @@
 "use client";
 
 import { Project } from ".contentlayer/generated";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import styles from "./ProjectShowcaseSection.module.css";
@@ -18,11 +18,6 @@ const ProjectShowcaseSection = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
 
   const openModal = (project: Project) => {
     setSelectedProject(project);

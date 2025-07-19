@@ -46,7 +46,7 @@ const FragmentedImage = ({
     };
   }, [src]);
 
-  const animateImage = (progress: number) => {
+  const animateImage = (progress: number) => { // eslint-disable-line @typescript-eslint/no-unused-vars
     const imageElement = imageRef.current;
     if (!imageElement) return;
 

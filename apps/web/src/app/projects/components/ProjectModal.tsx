@@ -50,7 +50,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
         setIsIconChanged(false);
       }, 2500);
     }
-  }, [project]);
+  }, [project, isClient]);
 
   // Handle ESC key and browser back button
   const handleKeyDown = useCallback((e: KeyboardEvent) => {
@@ -98,7 +98,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
         router.push("/projects", { scroll: false });
       }
     }
-  }, [isOpen, project?.slug, router, isClient]);
+  }, [isOpen, project, router, isClient]);
 
   // Don't render anything during SSR to prevent hydration issues
   if (!isClient || !project) return null;

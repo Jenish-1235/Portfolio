@@ -2,10 +2,9 @@
 
 import { Project } from ".contentlayer/generated";
 import Link from "next/link";
-import { FiGithub, FiExternalLink, FiSmartphone } from "react-icons/fi";
+import { FiGithub, FiExternalLink } from "react-icons/fi";
 import styles from "./ProjectPanel.module.css";
 import PrimaryButton from "@/app/common/PrimaryButton";
-import GhostButton from "@/app/common/GhostButton";
 
 interface ProjectPanelProps {
   project: Project;
