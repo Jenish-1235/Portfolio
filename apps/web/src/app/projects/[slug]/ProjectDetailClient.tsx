@@ -203,7 +203,7 @@ export default function ProjectDetailClient({ project }: ProjectDetailClientProp
           <div className={styles.discussionCard}>
             <h3 className={styles.discussionTitle}>Have thoughts on this project?</h3>
             <p className={styles.discussionText}>
-              I'd love to hear your feedback, questions, or ideas for improvement.
+              I&apos;d love to hear your feedback, questions, or ideas for improvement.
             </p>
             <motion.button
               className={`${styles.actionButton} ${styles.discussButton} ${styles.disabled}`}
