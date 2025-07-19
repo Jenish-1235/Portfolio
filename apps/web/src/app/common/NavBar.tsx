@@ -6,7 +6,11 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./NavBar.module.css";
 
-export default function NavBar() {
+interface NavBarProps {
+  hideOnMobile?: boolean;
+}
+
+export default function NavBar({ hideOnMobile = false }: NavBarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -28,6 +32,11 @@ export default function NavBar() {
   const closeMenu = () => {
     setIsMenuOpen(false);
   };
+
+  // If hideOnMobile is true and we're on mobile, don't render anything
+  if (hideOnMobile && isMobile) {
+    return null;
+  }
 
   return (
     <>

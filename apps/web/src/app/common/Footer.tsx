@@ -13,11 +13,20 @@ const Footer = () => {
   const [nextPage, setNextPage] = useState<{ path: string; title: string } | null>(null);
 
   useEffect(() => {
-    const currentPage = navigationFlow.find(page => page.path === pathname);
-    if (currentPage && currentPage.nextPath) {
-      setNextPage({ path: currentPage.nextPath, title: currentPage.nextTitle! });
+    // Check if we're on a project slug page
+    const isProjectPage = pathname.startsWith('/projects/') && pathname !== '/projects';
+    
+    if (isProjectPage) {
+      // For any project slug page, navigate back to projects
+      setNextPage({ path: '/projects', title: 'Projects' });
     } else {
-      setNextPage(null);
+      // Use the normal navigation flow for other pages
+      const currentPage = navigationFlow.find(page => page.path === pathname);
+      if (currentPage && currentPage.nextPath) {
+        setNextPage({ path: currentPage.nextPath, title: currentPage.nextTitle! });
+      } else {
+        setNextPage(null);
+      }
     }
   }, [pathname]);
 
