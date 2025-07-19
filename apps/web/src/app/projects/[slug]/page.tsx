@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import NavBar from "../../common/NavBar";
 import Footer from "../../common/Footer";
+import { RobustMDXContent } from "@/utils/robust-mdx";
 
 export async function generateStaticParams() {
   return allProjects.map((project) => ({ slug: project.slug }));
@@ -156,12 +157,10 @@ export default async function ProjectDetail({ params }: PageProps) {
               className="prose prose-lg max-w-none"
               style={{ color: 'var(--text-primary)' }}
             >
-              <div 
+              <RobustMDXContent 
+                raw={project.body.raw}
                 className="whitespace-pre-wrap leading-relaxed text-lg"
-                style={{ color: 'var(--text-secondary)' }}
-              >
-                {project.body.raw}
-              </div>
+              />
             </article>
           </div>
         </section>

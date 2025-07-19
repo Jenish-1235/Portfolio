@@ -6,6 +6,7 @@ import { useEffect, useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import styles from "./ProjectModal.module.css";
+import { RobustMDXContent } from "@/utils/robust-mdx";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -247,13 +248,7 @@ const ProjectModal = ({ project, isOpen, onClose }: ProjectModalProps) => {
               <div className={styles.projectContent}>
                 <h2 className={styles.sectionTitle}>Project Details</h2>
                 <div className={styles.contentBody}>
-                  {project.body.raw.split('\n').map((paragraph, index) => (
-                    paragraph.trim() && (
-                      <p key={index} className={styles.paragraph}>
-                        {paragraph}
-                      </p>
-                    )
-                  ))}
+                  <RobustMDXContent raw={project.body.raw} />
                 </div>
               </div>
             </div>

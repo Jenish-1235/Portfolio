@@ -1,11 +1,10 @@
 import { defineDocumentType, makeSource } from "contentlayer/source-files";
-import remarkGfm from "remark-gfm";
 import path from "path";
 
 const Blog = defineDocumentType(() => ({
   name: "Blog",
   filePathPattern: "blogs/**/*.mdx",
-  contentType: "mdx",
+  contentType: "markdown",
   fields: {
     title: { type: "string", required: true },
     slug: { type: "string", required: true },
@@ -18,7 +17,7 @@ const Blog = defineDocumentType(() => ({
 const Paper = defineDocumentType(() => ({
   name: "Paper",
   filePathPattern: "papers/**/*.mdx",
-  contentType: "mdx",
+  contentType: "markdown",
   fields: {
     title: { type: "string", required: true },
     date: { type: "date", required: true },
@@ -31,7 +30,7 @@ const Paper = defineDocumentType(() => ({
 const Project = defineDocumentType(() => ({
   name: "Project",
   filePathPattern: "projects/**/*.mdx",
-  contentType: "mdx",
+  contentType: "markdown",
   fields: {
     title: { type: "string", required: true },
     date: { type: "date", required: true },
@@ -48,17 +47,4 @@ const Project = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: path.join(process.cwd(), "../../content"),
   documentTypes: [Blog, Paper, Project],
-  mdx: {
-    remarkPlugins: [remarkGfm],
-    esbuildOptions(options) {
-      options.external = [
-        ...(options.external ?? []),
-        "react",
-        "react-dom",
-        "react/jsx-runtime",
-        "react/jsx-dev-runtime",
-      ];
-      return options;
-    },
-  },
 });
