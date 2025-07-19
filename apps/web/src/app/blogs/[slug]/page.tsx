@@ -1,5 +1,6 @@
 import { allBlogs } from ".contentlayer/generated";
 import { notFound } from "next/navigation";
+import { RobustMDXContent } from "@/utils/robust-mdx";
 
 export async function generateStaticParams() {
   return allBlogs.map((post) => ({ slug: post.slug }));
@@ -17,7 +18,7 @@ export default async function BlogPost({ params }: PageProps) {
   return (
     <article className="prose mx-auto py-10">
       <h1>{post.title}</h1>
-      <div className="whitespace-pre-wrap">{post.body.raw}</div>
+      <RobustMDXContent raw={post.body.raw} />
     </article>
   );
 }

@@ -1,0 +1,427 @@
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+}
+
+/* Backdrop - Full screen blur */
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  /* Ensure smooth animations */
+  will-change: opacity;
+}
+
+/* Modal Content - 70% on desktop, 100% on mobile */
+.modalContent {
+  position: relative;
+  margin-left: auto;
+  width: 70%;
+  background: var(--bg-primary);
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.3);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  /* Ensure smooth animations on all devices */
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Force hardware acceleration */
+}
+
+/* Header Buttons Container */
+.headerButtons {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Share Button */
+.shareButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  background: #d1e23c;
+  color: #1a1a1a;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.shareButton:hover {
+  background: #c5d635;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(209, 226, 60, 0.3);
+}
+
+.shareButton svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.buttonText {
+  white-space: nowrap;
+}
+
+/* Close Button */
+.closeButton {
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+}
+
+.closeButton:hover {
+  background: var(--bg-tertiary);
+  transform: scale(1.05);
+}
+
+.closeButton svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Scrollable Container */
+.scrollContainer {
+  flex: 1;
+  overflow-y: auto;
+  padding: 3rem 2rem 2rem;
+  scroll-behavior: smooth;
+}
+
+.scrollContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollContainer::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: 4px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 4px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+  opacity: 0.8;
+}
+
+/* Project Header */
+.projectHeader {
+  margin-bottom: 3rem;
+}
+
+.projectMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.category {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  background: var(--accent-primary-alpha);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}
+
+.date {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.projectTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.projectDescription {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 90%;
+}
+
+/* Project Links */
+.projectLinks {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.projectLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent-primary);
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--accent-primary);
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.projectLink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent-primary);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.projectLink:hover::before {
+  left: 0;
+}
+
+.projectLink:hover {
+  color: var(--text-inverse);
+  border-color: var(--accent-primary);
+}
+
+.projectLink.live {
+  color: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+}
+
+.projectLink.live::before {
+  background: var(--accent-secondary);
+}
+
+.projectLink.live:hover {
+  color: var(--text-inverse);
+  border-color: var(--accent-secondary);
+}
+
+.projectLink svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Cover Image */
+.imageContainer {
+  margin-bottom: 3rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.coverImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Tech Stack */
+.techStack {
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.techGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.techTag {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--accent-primary);
+  background: var(--accent-primary-alpha);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+}
+
+/* Project Content */
+.projectContent {
+  margin-bottom: 2rem;
+}
+
+.contentBody {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.paragraph {
+  margin-bottom: 1.5rem;
+}
+
+.paragraph:last-child {
+  margin-bottom: 0;
+}
+
+/* Tablet and smaller desktop styles */
+@media (max-width: 900px) {
+  .headerButtons {
+    top: 1rem;
+    right: 1rem;
+    gap: 0.75rem;
+  }
+
+  .shareButton {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .shareButton svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  .buttonText {
+    display: none; /* Hide text on smaller screens */
+  }
+
+  .closeButton {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .closeButton svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+
+  .scrollContainer {
+    padding: 3.5rem 1.5rem 1.5rem; /* Increased top padding */
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .modalContent {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .headerButtons {
+    top: 0.75rem;
+    right: 0.75rem;
+    flex-direction: row; /* Keep horizontal on mobile */
+    gap: 0.5rem;
+  }
+
+  .shareButton {
+    padding: 0.5rem;
+    font-size: 0;
+    min-width: 2.25rem;
+    height: 2.25rem;
+    justify-content: center;
+  }
+
+  .shareButton svg {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .buttonText {
+    display: none; /* Hide text completely on mobile */
+  }
+  
+  .closeButton {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  
+  .closeButton svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+  
+  .scrollContainer {
+    padding: 3rem 1.25rem 1.25rem; /* More top padding for mobile */
+  }
+  
+  .projectDescription {
+    max-width: 100%;
+  }
+  
+  .projectLinks {
+    flex-direction: column;
+  }
+  
+  .projectLink {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .closeButton {
+    transition: none;
+  }
+  
+  .projectLink {
+    transition: none;
+  }
+  
+  .projectLink::before {
+    transition: none;
+  }
+  
+  /* Keep Framer Motion animations for modal itself even with reduced motion */
+  /* as they are essential for functionality */
+}
+
+/* Focus Management */
+.closeButton:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+.projectLink:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}

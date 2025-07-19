@@ -1,0 +1,67 @@
+.curveContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1; /* Lower than project tiles */
+  overflow: hidden;
+  /* Improve performance */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.curveSvg {
+  position: absolute;
+  width: 120%;
+  height: 100%;
+  left: -10%;
+  top: 0;
+  /* Ensure smooth rendering */
+  will-change: transform;
+  transform: translateZ(0);
+  /* Optimize SVG rendering */
+  shape-rendering: geometricPrecision;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Enhanced responsive adjustments with smooth scaling */
+@media (max-width: 1200px) {
+  .curveSvg {
+    width: 130%;
+    left: -15%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .curveSvg {
+    width: 150%;
+    left: -25%;
+  }
+}
+
+@media (max-width: 768px) {
+  .curveSvg {
+    width: 180%;
+    left: -40%;
+  }
+}
+
+@media (max-width: 480px) {
+  .curveSvg {
+    width: 220%;
+    left: -60%;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .curveSvg {
+    animation: none;
+  }
+  
+  .curveContainer {
+    will-change: auto;
+  }
+}

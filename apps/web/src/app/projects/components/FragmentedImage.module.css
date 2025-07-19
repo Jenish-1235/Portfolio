@@ -1,0 +1,58 @@
+.imageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  /* Ensure smooth transitions */
+  will-change: opacity, transform;
+}
+
+.mainImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: filter 0.4s ease, transform 0.4s ease;
+  /* Optimize for animations */
+  will-change: filter, transform;
+  backface-visibility: hidden;
+}
+
+/* Enhanced hover effect for the entire image */
+.imageContainer:hover .mainImage {
+  filter: blur(1px) brightness(0.9);
+  transform: scale(1.02);
+}
+
+/* Water ripple effect on hover */
+.imageContainer:hover .mainImage {
+  animation: smoothWaterRipple 0.8s ease-out;
+}
+
+@keyframes smoothWaterRipple {
+  0% {
+    transform: scale(1);
+    filter: blur(0px);
+  }
+  25% {
+    transform: scale(1.01);
+    filter: blur(0.5px);
+  }
+  50% {
+    transform: scale(1.02);
+    filter: blur(1px);
+  }
+  75% {
+    transform: scale(1.01);
+    filter: blur(0.5px);
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}

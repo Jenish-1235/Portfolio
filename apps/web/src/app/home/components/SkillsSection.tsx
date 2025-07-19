@@ -41,7 +41,6 @@ const SkillsSection = () => {
       onMouseMove={!isTabletOrMobile ? handleMouseMove : undefined}
       onMouseLeave={!isTabletOrMobile ? handleMouseLeave : undefined}
       className={styles.skillsSection}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       style={!isTabletOrMobile ? {
         '--grad1x': grad1x,
         '--grad1y': grad1y,
@@ -132,7 +131,6 @@ const SkillCard = ({ skillCategory, index, isTabletOrMobile }: { skillCategory: 
     <motion.div
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       style={!isTabletOrMobile ? {
         transformStyle: 'preserve-3d',
         rotateX,
@@ -143,7 +141,6 @@ const SkillCard = ({ skillCategory, index, isTabletOrMobile }: { skillCategory: 
       className={styles.skillCard}
       initial={cardAnimation.initial}
       whileInView={cardAnimation.whileInView}
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       transition={cardAnimation.transition as any}
       viewport={{ once: isTabletOrMobile, amount: 0.3 }}
     >

@@ -1,0 +1,9 @@
+.container {
+  /* Remove any constraints that might interfere with GSAP pinning */
+  width: 100%;
+  min-height: 100vh;
+  color: var(--text-primary);
+  /* Ensure proper document flow for the showcase section */
+}
+
+/* Old header styles removed as they're no longer used in the new design */
