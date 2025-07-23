@@ -50,9 +50,21 @@ export default function NavBar({ hideOnMobile = false }: NavBarProps) {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.3 }}
           >
-            <div className={`${styles.hamburgerLine} ${isMenuOpen ? styles.hamburgerLineOpen : ''}`}></div>
-            <div className={`${styles.hamburgerLine} ${isMenuOpen ? styles.hamburgerLineOpen : ''}`}></div>
-            <div className={`${styles.hamburgerLine} ${isMenuOpen ? styles.hamburgerLineOpen : ''}`}></div>
+            <div
+              className={`${styles.hamburgerLine} ${
+                isMenuOpen ? styles.hamburgerLineOpen : ""
+              }`}
+            ></div>
+            <div
+              className={`${styles.hamburgerLine} ${
+                isMenuOpen ? styles.hamburgerLineOpen : ""
+              }`}
+            ></div>
+            <div
+              className={`${styles.hamburgerLine} ${
+                isMenuOpen ? styles.hamburgerLineOpen : ""
+              }`}
+            ></div>
           </motion.button>
 
           {/* Mobile Menu Overlay */}
@@ -68,21 +80,51 @@ export default function NavBar({ hideOnMobile = false }: NavBarProps) {
               >
                 <motion.div
                   className={styles.mobileMenu}
-                  initial={{ x: '100%' }}
+                  initial={{ x: "100%" }}
                   animate={{ x: 0 }}
-                  exit={{ x: '100%' }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  exit={{ x: "100%" }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
                   onClick={(e) => e.stopPropagation()}
                 >
                   <button className={styles.closeButton} onClick={closeMenu}>
                     ×
                   </button>
                   <ul className={styles.mobileNavList}>
-                    <li><Link href="/projects" onClick={closeMenu}>Projects</Link></li>
-                    <li><Link href="/resume" onClick={closeMenu}>Resume</Link></li>
-                    <li><Link href="/blogs" onClick={closeMenu}>Blogs</Link></li>
-                    <li><Link href="/papers" onClick={closeMenu}>Papershelf</Link></li>
-                    <li><Link href="/now" onClick={closeMenu}>Now</Link></li>
+                    <li>
+                      <Link href="/" onClick={closeMenu}>
+                        Home
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/projects" onClick={closeMenu}>
+                        Projects
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/blogs" onClick={closeMenu}>
+                        Blogs
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/papershelf" onClick={closeMenu}>
+                        Papershelf
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/now" onClick={closeMenu}>
+                        Now
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/resume" onClick={closeMenu}>
+                        Resume
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/contact" onClick={closeMenu}>
+                        Contact Me
+                      </Link>
+                    </li>
                   </ul>
                 </motion.div>
               </motion.div>
@@ -91,7 +133,7 @@ export default function NavBar({ hideOnMobile = false }: NavBarProps) {
         </>
       ) : (
         /* Desktop Navigation */
-        <motion.nav 
+        <motion.nav
           className={styles.navBar}
           initial={{ opacity: 0, y: -20, x: "-50%" }}
           animate={{ opacity: 1, y: 0, x: "-50%" }}
@@ -99,11 +141,27 @@ export default function NavBar({ hideOnMobile = false }: NavBarProps) {
           style={{ left: "50%" }}
         >
           <ul className={styles.navList}>
-            <li><Link href="/projects">Projects</Link></li>
-            <li><Link href="/resume">Resume</Link></li>
-            <li><Link href="/blogs">Blogs</Link></li>
-            <li><Link href="/papers">Papershelf</Link></li>
-            <li><Link href="/now">Now</Link></li>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/projects">Projects</Link>
+            </li>
+            <li>
+              <Link href="/blogs">Blogs</Link>
+            </li>
+            <li>
+              <Link href="/papershelf">Papershelf</Link>
+            </li>
+            <li>
+              <Link href="/now">Now</Link>
+            </li>
+            <li>
+              <Link href="/resume">Resume</Link>
+            </li>
+            <li>
+              <Link href="/contact">Contact Me</Link>
+            </li>
           </ul>
         </motion.nav>
       )}

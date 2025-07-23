@@ -3,30 +3,42 @@
     "path": "/",
     "title": "Home",
     "nextPath": "/projects",
-    "nextTitle": "Projects"
+    "nextTitle": "to Explore Projects"
   },
   {
     "path": "/projects",
     "title": "Projects",
+    "nextPath": "/blogs",
+    "nextTitle": "to read my Blogs"
+  },
+  {
+    "path": "/blogs",
+    "title": "Blogs",
     "nextPath": "/papershelf",
-    "nextTitle": "Papershelf"
+    "nextTitle": "to deep dive into Papers"
   },
   {
     "path": "/papershelf",
     "title": "Papershelf",
-    "nextPath": "/blogs",
-    "nextTitle": "Blog"
+    "nextPath": "/now",
+    "nextTitle": "to know what I am Building"
   },
   {
-    "path": "/blogs",
-    "title": "Blog",
+    "path": "/now",
+    "title": "Now",
+    "nextPath": "/resume",
+    "nextTitle": "to see my Resume"
+  },
+  {
+    "path": "/resume",
+    "title": "Resume",
     "nextPath": "/contact",
-    "nextTitle": "Contact Me"
+    "nextTitle": "to Contact Me"
   },
   {
     "path": "/contact",
-    "title": "Contact Me",
-    "nextPath": null,
-    "nextTitle": null
+    "title": "Contact",
+    "nextPath":"/",
+    "nextTitle":"to Startover"
   }
 ]

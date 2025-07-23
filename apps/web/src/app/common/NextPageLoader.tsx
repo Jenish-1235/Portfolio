@@ -30,7 +30,7 @@ const NextPageLoader: React.FC<NextPageLoaderProps> = ({ path, title }) => {
     <div ref={loaderRef} className={styles.loaderSection}>
       <div className={styles.loaderContent}>
         <h3 className={styles.loaderText}>
-          Keep Scrolling for <span>{title}</span>
+          Keep Scrolling <span>{title}</span>
         </h3>
         <div className={styles.loaderBar}>
           <motion.div
