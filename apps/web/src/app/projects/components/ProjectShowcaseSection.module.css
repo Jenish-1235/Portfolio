@@ -98,7 +98,6 @@
   transform: translateY(-8px) scale(1.02);
   box-shadow: 
     var(--shadow-xl),
-    0 0 30px rgba(209, 226, 60, 0.1);
 }
 
 .imageWrapper {
@@ -282,6 +281,12 @@
 
 .projectLink:hover .linkIcon {
   transform: translate(2px, -2px);
+}
+
+.viewAllContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 6rem;
 }
 
 /* Mobile responsiveness */

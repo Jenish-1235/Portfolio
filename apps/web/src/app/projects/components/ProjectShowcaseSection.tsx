@@ -7,6 +7,7 @@ import Image from "next/image";
 import styles from "./ProjectShowcaseSection.module.css";
 import AnimatedCurve from "./AnimatedCurve";
 import ProjectModal from "./ProjectModal";
+import ExploreMoreButton from "@/app/common/ExploreMoreButton";
 
 interface ProjectShowcaseSectionProps {
   projects: Project[];
@@ -68,6 +69,11 @@ const ProjectShowcaseSection = ({
               onLearnMore={() => openModal(project)}
             />
           ))}
+        </div>
+        <div className={styles.viewAllContainer}>
+          <ExploreMoreButton href="/project-archive">
+            View All Projects
+          </ExploreMoreButton>
         </div>
       </div>
     </section>

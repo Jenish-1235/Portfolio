@@ -1,0 +1,60 @@
+.exploreMoreButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background:  #c5d84a;
+    color: #000000 !important;
+    text-decoration: none;
+    border-radius: 1rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: -0.025em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+      0 4px 14px rgba(209, 226, 60, 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .exploreMoreButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #c5d84a;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .exploreMoreButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 
+      0 8px 25px rgba(209, 226, 60, 0.4),
+      0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .exploreMoreButton:hover::before {
+    opacity: 1;
+  }
+  
+  .exploreMoreButton svg,
+  .exploreMoreButton span {
+    position: relative;
+    z-index: 1;
+    color: #000000 !important;
+  }
+  
+  .exploreMoreButton svg {
+    transition: transform 0.3s ease;
+    stroke: #000000 !important;
+  }
+  
+  .exploreMoreButton:hover svg {
+    transform: translate(2px, -2px);
+    stroke: #000000 !important;
+  }
+  
