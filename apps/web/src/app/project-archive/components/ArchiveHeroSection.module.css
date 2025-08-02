@@ -59,6 +59,24 @@
   z-index: 1;
 }
 
+.shapeBlurContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.8;
+  mix-blend-mode: screen;
+  filter: blur(0.5px);
+}
+
+.shapeBlur {
+  width: 100%;
+  height: 100%;
+}
+
 .floatingShapes {
   position: relative;
   width: 100%;
@@ -94,29 +112,15 @@
   max-width: 1200px;
   padding: 0 2rem;
   text-align: center;
-}
-
-.carouselContainer {
-  position: relative;
-  height: 300px;
   display: flex;
-  align-items: center;
   justify-content: center;
-}
-
-.slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  min-height: 60vh;
 }
 
 .slideContent {
   max-width: 800px;
+  width: 100%;
 }
 
 .heroTitle {
@@ -127,6 +131,7 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
 .heroSubtitle {
@@ -135,6 +140,7 @@
   color: var(--accent-primary);
   margin-bottom: 1rem;
   line-height: 1.3;
+  text-align: center;
 }
 
 .heroDescription {
@@ -143,6 +149,7 @@
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .carouselNav {
@@ -249,28 +256,9 @@
     min-height: 350px;
   }
   
-  .carouselContainer {
-    height: 250px;
-  }
-  
   .heroContent {
     padding: 0 1rem;
-  }
-  
-  .carouselNav {
-    margin-top: 1.5rem;
-  }
-  
-  .scrollIndicator {
-    bottom: 1rem;
-  }
-  
-  .scrollButton {
-    padding: 0.75rem;
-  }
-  
-  .scrollButton span {
-    display: none;
+    min-height: 50vh;
   }
   
   .backLink {
@@ -289,12 +277,7 @@
     min-height: 300px;
   }
   
-  .carouselContainer {
-    height: 200px;
+  .heroContent {
+    min-height: 40vh;
   }
-  
-  .navDot {
-    width: 10px;
-    height: 10px;
-  }
-} 
+}

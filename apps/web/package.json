@@ -11,6 +11,7 @@
   "dependencies": {
     "@tsparticles/engine": "^3.8.1",
     "@tsparticles/slim": "^3.8.1",
+    "@types/three": "^0.178.1",
     "contentlayer": "^0.3.4",
     "gsap": "^3.13.0",
     "next": "^15.3.5",
@@ -19,7 +20,8 @@
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0",
     "rehype-highlight": "^7.0.2",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "three": "^0.179.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
