@@ -1,0 +1,144 @@
+
+// Charity Donation Platform ER Diagram (dbdiagram.io compatible)
+
+Table Donor {
+  id INT [pk, increment]
+  name TEXT
+  email TEXT
+  password TEXT
+  city TEXT
+  state TEXT
+  country TEXT
+  age INT
+  gender VARCHAR(10)
+  income_range VARCHAR(50)
+  referrer_source VARCHAR(100)
+  last_donated_at DATETIME
+  created_at TIMESTAMP
+}
+
+Table Charity {
+  charity_id INT [pk, increment]
+  name TEXT
+  email TEXT
+  password TEXT
+  category TEXT
+  description TEXT
+  websiteUrl TEXT
+  ackUrl TEXT
+  receiptUrl TEXT
+  is_active BOOLEAN
+  created_at TIMESTAMP
+}
+
+Table Campaign {
+  campaign_id INT [pk, increment]
+  charity_id INT [ref: > Charity.charity_id]
+  title TEXT
+  category TEXT
+  description TEXT
+  rec_url TEXT
+  ack_url TEXT
+  goal_amount DECIMAL(12,2)
+  current_amount DECIMAL(12,2)
+  is_active BOOLEAN
+  start_date DATE
+  end_date DATE
+}
+
+Table FundraiserCampaign {
+  fcampaign_id INT [pk, increment]
+  charity_id INT [ref: > Charity.charity_id]
+  title TEXT
+  category TEXT
+  goal DECIMAL(12,2)
+  rec_url TEXT
+  ack_url TEXT
+  description TEXT
+  is_active BOOLEAN
+  start_date DATE
+  end_date DATE
+  created_at TIMESTAMP
+}
+
+Table CampaignTransactions {
+  transaction_id INT [pk, increment]
+  donor_id INT [ref: > Donor.id]
+  campaign_id INT [ref: > Campaign.campaign_id]
+  amount DECIMAL(12,2)
+  receipt_status VARCHAR(50)
+  receipt_url TEXT
+  ack_url TEXT
+  timestamp TIMESTAMP
+}
+
+Table FundraiserTransactions {
+  transaction_id INT [pk, increment]
+  donor_id INT [ref: > Donor.id]
+  fcampaign_id INT [ref: > FundraiserCampaign.fcampaign_id]
+  amount DECIMAL(12,2)
+  receipt_status VARCHAR(50)
+  receipt_url TEXT
+  ack_url TEXT
+  timestamp TIMESTAMP
+}
+
+Table EntityType {
+  id INT [pk, increment]
+  type VARCHAR(20) [unique]
+}
+
+Table RecurringDonation {
+  recurring_donation_id INT [pk, increment]
+  donor_id INT [ref: > Donor.id]
+  entity_type_id INT [ref: > EntityType.id]
+  entity_id INT
+  charity_id INT [ref: > Charity.charity_id]
+  recurring_rate VARCHAR(20)
+  amount DECIMAL(10,2)
+  last_installment DATE
+  next_installment DATE
+  start_date DATE
+  end_date DATE
+  is_active BOOLEAN
+  primary_payment_method_id INT
+}
+
+Table ContactMethodType {
+  id INT [pk, increment]
+  method VARCHAR(50)
+  description TEXT
+}
+
+Table UserContactPreference {
+  preference_id INT [pk, increment]
+  donor_id INT [ref: > Donor.id]
+  method_id INT [ref: > ContactMethodType.id]
+  is_enabled BOOLEAN
+  preferred_language VARCHAR(10)
+}
+
+Table PaymentMethodType {
+  id INT [pk, increment]
+  method VARCHAR(50)
+  provider VARCHAR(100)
+  requires_token BOOLEAN
+  callback_url TEXT
+}
+
+Table UserPaymentPreference {
+  payment_id INT [pk, increment]
+  donor_id INT [ref: > Donor.id]
+  payment_method_id INT [ref: > PaymentMethodType.id]
+  account_last4 VARCHAR(4)
+  provider_token TEXT
+  is_primary BOOLEAN
+  created_at TIMESTAMP
+}
+
+Table FundraiserCache {
+  fcampaign_id INT [pk, ref: > FundraiserCampaign.fcampaign_id]
+  total_amount DECIMAL(12,2)
+  donor_count INT
+  last_updated_at TIMESTAMP
+}
