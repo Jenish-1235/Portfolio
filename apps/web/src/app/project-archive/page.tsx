@@ -1,15 +1,11 @@
 import Footer from "../common/Footer";
-import NavBar from "../common/NavBar";
+import ProjectArchiveContainer from "./components/ProjectArchiveContainer";
 
 export default function ProjectArchivePage() {
-    return (
-      <>
-        <NavBar/>
-        <main style={{ minHeight: "100vh", paddingTop: "10rem", paddingLeft: "2rem" }}>
-            <h1>Project Archive</h1>
-            <p>This page is under construction.</p>
-        </main>
-        <Footer/>
-      </>
-    );
+  return (
+    <>
+      <ProjectArchiveContainer />
+      <Footer />
+    </>
+  );
 }
