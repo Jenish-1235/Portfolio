@@ -1,34 +1,34 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
-import { usePathname } from 'next/navigation';
+// import React, { useEffect, useState } from 'react';
+// import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
 import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp, FaEnvelope, FaTwitter } from 'react-icons/fa';
 import Link from 'next/link';
-import navigationFlow from '@/data/navigation.json';
-import NextPageLoader from './NextPageLoader';
+// import navigationFlow from '@/data/navigation.json';
+// import NextPageLoader from './NextPageLoader';
 
 const Footer = () => {
-  const pathname = usePathname();
-  const [nextPage, setNextPage] = useState<{ path: string; title: string } | null>(null);
+  // const pathname = usePathname();
+  // const [nextPage, setNextPage] = useState<{ path: string; title: string } | null>(null);
 
-  useEffect(() => {
-    // Check if we're on a project slug page
-    const isProjectPage = pathname.startsWith('/projects/') && pathname !== '/projects';
+  // useEffect(() => {
+  //   // Check if we're on a project slug page
+  //   const isProjectPage = pathname.startsWith('/projects/') && pathname !== '/projects';
     
-    if (isProjectPage) {
-      // For any project slug page, navigate back to projects
-      setNextPage({ path: '/projects', title: 'Projects' });
-    } else {
-      // Use the normal navigation flow for other pages
-      const currentPage = navigationFlow.find(page => page.path === pathname);
-      if (currentPage && currentPage.nextPath) {
-        setNextPage({ path: currentPage.nextPath, title: currentPage.nextTitle! });
-      } else {
-        setNextPage(null);
-      }
-    }
-  }, [pathname]);
+  //   if (isProjectPage) {
+  //     // For any project slug page, navigate back to projects
+  //     setNextPage({ path: '/projects', title: 'Projects' });
+  //   } else {
+  //     // Use the normal navigation flow for other pages
+  //     const currentPage = navigationFlow.find(page => page.path === pathname);
+  //     if (currentPage && currentPage.nextPath) {
+  //       setNextPage({ path: currentPage.nextPath, title: currentPage.nextTitle! });
+  //     } else {
+  //       setNextPage(null);
+  //     }
+  //   }
+  // }, [pathname]);
 
   return (
     <>
@@ -46,11 +46,11 @@ const Footer = () => {
 
           <div className={styles.linksSection}>
             <div className={styles.navLinks}>
-              <h3 className={styles.linksHeading}>Sitemap</h3>
+              {/* <h3 className={styles.linksHeading}>Sitemap</h3>
               <Link href="/blogs">Blog</Link>
               <Link href="/papershelf">Papershelf</Link>
               <Link href="/projects">Projects</Link>
-              <Link href="/about">About</Link>
+              <Link href="/about">About</Link> */}
             </div>
             <div className={styles.socialLinks}>
               <h3 className={styles.linksHeading}>Socials</h3>
