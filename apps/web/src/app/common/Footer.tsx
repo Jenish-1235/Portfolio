@@ -107,7 +107,7 @@ const Footer = () => {
           </p>
         </div>
       </footer>
-      {nextPage && <NextPageLoader path={nextPage.path} title={nextPage.title} />}
+      {/* {nextPage && <NextPageLoader path={nextPage.path} title={nextPage.title} />} */}
     </>
   );
 };

@@ -9,7 +9,7 @@ import StackingContainer from "./components/StackingContainer";
 export default function HomePage() {
   return (
     <>
-      <NavBar />
+      {/* <NavBar /> */}
       <HomeContainer>
         <StackingContainer>
           <HeroSection />

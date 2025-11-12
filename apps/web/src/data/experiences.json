@@ -2,6 +2,28 @@
   "experiences": [
     {
       "id": 1,
+      "company": "NeroSpatial",
+      "position": "Founder & Engineer",
+      "duration": "Current",
+      "period": "2025-Present",
+      "type": "current",
+      "description": "Building Spatially Aware AI Tutors",
+      "achievements": [
+        "Working on Firmware and Cloud integration for IoT devices",
+        "Building Backend services and System Design"
+      ],
+      "technologies": [
+        "Python",
+        "AWS",
+        "C++",
+        "Android",
+        "SQL",
+        "System Design"
+      ],
+      "logo": "🚀"
+    },
+    {
+      "id": 2,
       "company": "Freelance",
       "position": "Full-Stack & Mobile Developer",
       "duration": "Jan 2022 - Present",
@@ -12,11 +34,17 @@
         "Led development of full-stack solutions using React and Spring Boot",
         "Handled client communication from ideation to deployment"
       ],
-      "technologies": ["React", "Spring Boot", "Firebase", "Android", "PostgreSQL"],
+      "technologies": [
+        "React",
+        "Spring Boot",
+        "Firebase",
+        "Android",
+        "PostgreSQL"
+      ],
       "logo": "🛠️"
     },
     {
-      "id": 2,
+      "id": 3,
       "company": "Scaler (InterviewBit)",
       "position": "Linux & DevOps Problem Setter",
       "duration": "May 2025 - July 2025",
@@ -30,6 +58,5 @@
       "technologies": ["Linux", "Docker", "Kubernetes", "Git", "Jenkins"],
       "logo": "🧩"
     }
-    
   ]
 }
