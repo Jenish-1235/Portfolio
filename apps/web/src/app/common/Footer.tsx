@@ -4,7 +4,7 @@
 // import { usePathname } from 'next/navigation';
 import styles from './Footer.module.css';
 import { FaGithub, FaLinkedin, FaInstagram, FaWhatsapp, FaEnvelope, FaTwitter } from 'react-icons/fa';
-import Link from 'next/link';
+// import Link from 'next/link';
 // import navigationFlow from '@/data/navigation.json';
 // import NextPageLoader from './NextPageLoader';
 
