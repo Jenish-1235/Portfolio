@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPublishedPosts } from '../../lib/notion';
+import site from '../../data/site.json';
+
+const posts = await getPublishedPosts();
+const { title, description, emptyMessage } = site.pages.blog;
+---
+
+<Layout title={title} description={description}>
+  <section class="section">
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <hr />
+    {posts.length > 0 ? (
+      <div class="posts-list">
+        {posts.map((post) => (
+          <div class="card">
+            <h2><a href={`/blog/${post.slug}`}>{post.title}</a></h2>
+            <p class="meta">{post.date}</p>
+            <p>{post.summary}</p>
+            <a href={`/blog/${post.slug}`} class="btn">Read More &rarr;</a>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p><em>{emptyMessage}</em></p>
+    )}
+  </section>
+</Layout>

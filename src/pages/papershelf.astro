@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getPapers } from '../lib/notion';
+import site from '../data/site.json';
+
+const papers = await getPapers();
+---
+
+<Layout title="Papershelf" description="Papers I have read recently and my notes about them.">
+  <section class="section">
+    <h1>Papershelf</h1>
+    <p>Papers I have read recently. This list is powered by the same Notion database as blog and projects.</p>
+    {papers.length > 0 ? (
+      papers.map((paper) => (
+        <div class="card">
+          <h3>{paper.title}</h3>
+          <p class="meta">{paper.date}</p>
+          <p>{paper.summary}</p>
+        </div>
+      ))
+    ) : (
+      <p><em>No papers logged yet.</em></p>
+    )}
+  </section>
+</Layout>
+

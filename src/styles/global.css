@@ -1,0 +1,384 @@
+/* Brutalist / Minimalist Global Styles */
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --link-color: #0000ee;
+  --border-color: #000000;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --content-padding: 2rem 5vw;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #111111;
+    --text-color: #eeeeee;
+    --link-color: #55b2ff;
+    --border-color: #eeeeee;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  line-height: 1.6;
+}
+
+body {
+  width: 90%;
+  max-width: 80vw;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: var(--content-padding);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+
+a {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-style: dashed;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+ul, ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+hr {
+  border: 0;
+  border-bottom: 2px solid var(--border-color);
+  margin: 2rem 0;
+}
+
+/* Layout */
+.nav-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.nav-header .logo a {
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.nav-header .nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-header .nav-links a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.nav-header .nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile nav (hamburger) */
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .nav-header {
+    padding-bottom: 0.75rem;
+  }
+
+  .nav-header .nav-links {
+    position: absolute;
+    top: 3.2rem;
+    right: 0;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    display: none;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 10;
+  }
+
+  .nav-toggle {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 11;
+  }
+
+  .nav-toggle-label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    position: absolute;
+    right: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .nav-toggle-label span {
+    width: 1.6rem;
+    height: 2px;
+    background: var(--text-color);
+  }
+
+  .nav-toggle:checked + .nav-toggle-label + .nav-links {
+    display: flex;
+  }
+}
+
+.section {
+  margin-bottom: 4rem;
+}
+
+/* Cards - unified for projects, experience, blog */
+.card {
+  padding: 0 0 2rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.card:last-child {
+  border-bottom: none;
+}
+
+.card h2, .card h3 {
+  margin-top: 0;
+}
+
+.meta {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.btn {
+  display: inline-block;
+  border: 2px solid var(--border-color);
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: bold;
+  background: transparent;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--text-color);
+  color: var(--bg-color);
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-image-wrapper {
+  flex: 0 0 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  color: #e57373;
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .hero-subtitle {
+    color: #ff8a80;
+  }
+}
+
+.hero-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.pill-btn:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+/* Section headings (home page grid) */
+.section-heading {
+  margin-top: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.section-link {
+  font-size: 1rem;
+  font-weight: normal;
+  opacity: 0.8;
+  white-space: nowrap;
+}
+
+.section-subtitle {
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+}
+
+/* Grid layout */
+.grid-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .grid-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+.compact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.compact-list li {
+  margin-bottom: 0.8rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.compact-list .date {
+  color: #888;
+  font-family: monospace;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.compact-list a {
+  text-decoration: none;
+}
+
+.compact-list a:hover {
+  text-decoration: underline;
+}
+
+/* Notion markdown content */
+.notion-content img {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid var(--border-color);
+}
+
+.notion-content pre {
+  background: var(--text-color);
+  color: var(--bg-color);
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.notion-content code {
+  font-family: monospace;
+}
+
+.notion-content blockquote {
+  border-left: 4px solid var(--border-color);
+  margin-left: 0;
+  padding-left: 1rem;
+  font-style: italic;
+}

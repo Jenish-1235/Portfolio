@@ -1,0 +1,52 @@
+{
+  "name": "Jenish Togadiya",
+  "tagline": "engineering, systems, and backend architecture. always building.",
+  "bio": [
+    "I am a software engineer passionate about scalable backend systems and high-performance applications. Currently, I am a Backend Intern – Platform Engineering @ FamPay focusing on cloud infrastructure and backend migrations.",
+    "I am pursuing my B.Sc in Computer Science at BITS Pilani, and spend my time building CI/CD pipelines, distributed architectures, and AI-powered hardware prototypes like NeroSpatial."
+  ],
+  "profileImage": "/profile.png",
+  "contact": {
+    "email": "jenishtogadiya549@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/jenish-togadiya-a424b12bb/",
+    "linkedinLabel": "Jenish Togadiya",
+    "github": "https://github.com/Jenish-1235",
+    "githubLabel": "Jenish-1235",
+    "resume": "/Resume_Jenish_Togadiya.pdf"
+  },
+  "nav": [
+    { "label": "Blog", "href": "/blog" },
+    { "label": "Projects", "href": "/projects" },
+    { "label": "Papershelf", "href": "/papershelf" },
+    { "label": "Experience", "href": "/experience" }
+  ],
+  "footer": {
+    "contactTitle": "Contact",
+    "contactMessage": "Feel free to reach out to me for collaborations or just a friendly chat.",
+    "copyright": "Jenish Togadiya"
+  },
+  "home": {
+    "recentBlogTitle": "Recent blog posts",
+    "recentBlogArchive": "Full archive",
+    "recentBlogSubtitle": "Things I have written recently.",
+    "emptyBlogMessage": "No posts published yet. Check back soon!",
+    "recentProjectsTitle": "Recent projects",
+    "recentProjectsArchive": "Projectshelf",
+    "recentProjectsSubtitle": "Systems and tools I have built recently."
+  },
+  "pages": {
+    "projects": {
+      "title": "Projects",
+      "description": "A selection of my recent technical work, from AI hardware prototypes to robust backend architectures."
+    },
+    "experience": {
+      "title": "Experience",
+      "description": "My professional journey building software, platforms, and teams."
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Thoughts, tutorials, and insights on software engineering, backend architecture, and technology.",
+      "emptyMessage": "No blog posts found. I haven't published anything yet, or the Notion database is not connected."
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "jobs": [
+    {
+      "title": "Freelance Full Stack Developer",
+      "meta": "Remote | 2023 – 2024",
+      "description": [
+        "Delivered comprehensive platforms, including multi-vendor e-commerce sites, marketplace architectures, and business management systems.",
+        "Designed backend microservices and automation tools spanning web and mobile environments.",
+        "Specialized in modern stack development leveraging React, FastAPI, Node.js, and Redis."
+      ]
+    },
+    {
+      "title": "Full Stack Web Developer",
+      "meta": "RishDigions Agency | Remote | Aug 2024 – Nov 2024",
+      "description": [
+        "Built full-stack applications for multiple client projects using React, Node.js, MySQL, and AWS.",
+        "Developed scalable backend APIs, authentication flows, role-based routing, and real-time dashboards.",
+        "Optimized frontend UI/UX and implemented reusable component systems to accelerate development cycles.",
+        "Coordinated directly with clients to refine requirements, deliver milestones, and maintain delivery timelines."
+      ]
+    },
+    {
+      "title": "Backend Intern – Platform Engineering",
+      "meta": "FamPay | Bengaluru, India | 2025 – Present",
+      "description": [
+        "Worked closely with team during crucial codebase migration phase from forgejo to gitlab.",
+        "Designed and maintained CI/CD pipelines enabling automated builds, Docker image generation, testing, and controlled rollouts.",
+        "Built and maintained UAT environments mirroring production for safe feature validation and release verification.",
+        "Improved observability, autoscaling policies, and infrastructure reliability across services."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "Bachelor of Science (B.Sc) in Computer Science",
+      "meta": "Birla Institute of Technology and Science, Pilani | 2024 – 2027"
+    }
+  ]
+}

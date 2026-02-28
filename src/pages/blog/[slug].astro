@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPublishedPosts, getPostBySlug } from '../../lib/notion';
+
+export async function getStaticPaths() {
+  const posts = await getPublishedPosts();
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+// When the page is rendered, fetch the HTML content
+const { post, html } = await getPostBySlug(slug as string);
+
+if (!post) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={post.title} description={post.summary}>
+  <article class="section">
+    <header style="margin-bottom: 2rem;">
+      <a href="/blog">&larr; Back to Blog</a>
+      <h1>{post.title}</h1>
+      <p class="meta">Published on {post.date}</p>
+    </header>
+    
+    <div class="notion-content" set:html={html}></div>
+  </article>
+</Layout>
+

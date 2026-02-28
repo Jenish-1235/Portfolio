@@ -1,0 +1,18 @@
+---
+import site from '../data/site.json';
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <hr />
+  <div class="section">
+    <h3>{site.footer.contactTitle}</h3>
+    <p>{site.footer.contactMessage}</p>
+    <ul>
+      <li>Email: <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
+      <li>LinkedIn: <a href={site.contact.linkedin} target="_blank" rel="noopener noreferrer">{site.contact.linkedinLabel}</a></li>
+      <li>GitHub: <a href={site.contact.github} target="_blank" rel="noopener noreferrer">{site.contact.githubLabel}</a></li>
+    </ul>
+    <p class="meta">&copy; {year} {site.footer.copyright}.</p>
+  </div>
+</footer>
