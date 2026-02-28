@@ -5,89 +5,92 @@ import { getPublishedPosts, getProjects, getPapers } from '../lib/notion';
 import site from '../data/site.json';
 
 const posts = await getPublishedPosts();
-const recentPosts = posts.slice(0, 3);
+const recentPosts = posts.slice(0, 10);
 const projects = await getProjects();
-const featuredProjects = projects.slice(0, 2);
+const recentProjects = projects.slice(0, 10);
 const papers = await getPapers();
-const recentPapers = papers.slice(0, 3);
+const recentPapers = papers.slice(0, 10);
 const { home } = site;
 ---
 
 <Layout title="Home">
-  <section class="section hero-section">
-    <div class="hero-content">
-      <h1 class="hero-title">Hey, I am {site.name.split(' ')[0]}</h1>
-      <p class="hero-subtitle"><em>{site.tagline}</em></p>
-      {site.bio.map((para) => (
-        <p set:html={para.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}></p>
-      ))}
+  <div class="home-layout">
+    <!-- Left Column: Profile & About -->
+    <aside class="left-column">
+      <div class="profile-card">
+        <img src={site.profileImage} alt={site.name} class="profile-img" />
+        <h1 class="profile-name">Hey, I am {site.name.split(' ')[0]}</h1>
+        <p class="profile-tagline"><em>{site.tagline}</em></p>
+      </div>
+      <div class="about-section">
+        {site.bio.map((para) => (
+          <p set:html={para.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}></p>
+        ))}
+      </div>
       <SocialLinks />
-    </div>
-    <div class="hero-image-wrapper">
-      <img src={site.profileImage} alt={site.name} class="hero-img" />
-    </div>
-  </section>
+    </aside>
 
-  <div class="grid-section">
-    <section>
-      <h2 class="section-heading">
-        {home.recentBlogTitle}
-        <span class="section-link">• <a href="/blog">{home.recentBlogArchive} &rarr;</a></span>
-      </h2>
-      <p class="section-subtitle">{home.recentBlogSubtitle}</p>
-      {recentPosts.length > 0 ? (
-        <ul class="compact-list">
-          {recentPosts.map((post) => (
-            <li>
-              <span class="date">{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })} :</span>
-              <a href={`/blog/${post.slug}`}>{post.title}</a>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p><em>{home.emptyBlogMessage}</em></p>
-      )}
-    </section>
-    <section>
-      <h2 class="section-heading">
-        {home.recentProjectsTitle}
-        <span class="section-link">• <a href="/projects">{home.recentProjectsArchive} &rarr;</a></span>
-      </h2>
-      <p class="section-subtitle">{home.recentProjectsSubtitle}</p>
-      <ul class="compact-list">
-        {featuredProjects.map((project) => (
-          <li>
-            <span class="date">•</span>
-            <a href="/projects">{project.title}</a>
-          </li>
-        ))}
-      </ul>
-    </section>
+    <!-- Right Column: Blog, Projects, Papershelf -->
+    <div class="right-column">
+      <section class="content-block">
+        <h2 class="content-heading">
+          {home.recentBlogTitle}
+          <span class="content-link">• <a href="/blog">{home.recentBlogArchive} &rarr;</a></span>
+        </h2>
+        <p class="content-subtitle">{home.recentBlogSubtitle}</p>
+        {recentPosts.length > 0 ? (
+          <ul class="compact-list">
+            {recentPosts.map((post) => (
+              <li>
+                <span class="date">{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}</span>
+                <a href={`/blog/${post.slug}`}>{post.title}</a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="empty-message"><em>{home.emptyBlogMessage}</em></p>
+        )}
+      </section>
+
+      <section class="content-block">
+        <h2 class="content-heading">
+          {home.recentProjectsTitle}
+          <span class="content-link">• <a href="/projects">{home.recentProjectsArchive} &rarr;</a></span>
+        </h2>
+        <p class="content-subtitle">{home.recentProjectsSubtitle}</p>
+        {recentProjects.length > 0 ? (
+          <ul class="compact-list">
+            {recentProjects.map((project) => (
+              <li>
+                <span class="date">{new Date(project.date).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}</span>
+                <a href={`/projects/${project.slug}`}>{project.title}</a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="empty-message"><em>{home.emptyProjectsMessage}</em></p>
+        )}
+      </section>
+
+      <section class="content-block">
+        <h2 class="content-heading">
+          {home.recentPapershelfTitle}
+          <span class="content-link">• <a href="/papershelf">{home.recentPapershelfArchive} &rarr;</a></span>
+        </h2>
+        <p class="content-subtitle">{home.recentPapershelfSubtitle}</p>
+        {recentPapers.length > 0 ? (
+          <ul class="compact-list">
+            {recentPapers.map((paper) => (
+              <li>
+                <span class="date">{new Date(paper.date).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}</span>
+                <a href={`/papershelf/${paper.slug}`}>{paper.title}</a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="empty-message"><em>{home.emptyPapershelfMessage}</em></p>
+        )}
+      </section>
+    </div>
   </div>
-
-  <section class="section">
-    <h2 class="section-heading">
-      Papershelf
-      <span class="section-link">• <a href="/papershelf">View all &rarr;</a></span>
-    </h2>
-    <p class="section-subtitle">Papers I have read recently.</p>
-    {recentPapers.length > 0 ? (
-      <ul class="compact-list">
-        {recentPapers.map((paper) => (
-          <li>
-            <span class="date">
-              {new Date(paper.date).toLocaleDateString('en-US', {
-                month: 'short',
-                day: '2-digit',
-                year: 'numeric',
-              })} :
-            </span>
-            <span>{paper.title}</span>
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <p><em>No papers logged yet.</em></p>
-    )}
-  </section>
 </Layout>

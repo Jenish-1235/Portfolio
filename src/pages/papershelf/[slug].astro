@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getPapers, getPaperBySlug } from '../../lib/notion';
+
+export async function getStaticPaths() {
+  const papers = await getPapers();
+  return papers.map((paper) => ({
+    params: { slug: paper.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const { paper, html } = await getPaperBySlug(slug as string);
+
+if (!paper) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={paper.title}>
+  <article class="section">
+    <header style="margin-bottom: 2rem;">
+      <a href="/papershelf">&larr; Back to Papershelf</a>
+      <h1>{paper.title}</h1>
+      <p class="meta">Published on {paper.date}</p>
+    </header>
+    
+    <div class="notion-content" set:html={html}></div>
+  </article>
+</Layout>

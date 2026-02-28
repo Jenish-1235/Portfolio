@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getProjects, getProjectBySlug } from '../../lib/notion';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const { project, html } = await getProjectBySlug(slug as string);
+
+if (!project) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={project.title}>
+  <article class="section">
+    <header style="margin-bottom: 2rem;">
+      <a href="/projects">&larr; Back to Projects</a>
+      <h1>{project.title}</h1>
+      <p class="meta">Published on {project.date}</p>
+    </header>
+    
+    <div class="notion-content" set:html={html}></div>
+  </article>
+</Layout>

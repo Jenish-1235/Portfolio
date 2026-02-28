@@ -1,0 +1,29 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getProjects } from '../../lib/notion';
+import site from '../../data/site.json';
+
+const projects = await getProjects();
+const { title, description, emptyMessage } = site.pages.projects;
+---
+
+<Layout title={title} description={description}>
+  <section class="section">
+    <h1>{title}</h1>
+    <p>{description}</p>
+    <hr />
+    {projects.length > 0 ? (
+      <div class="posts-list">
+        {projects.map((project) => (
+          <div class="card">
+            <h2><a href={`/projects/${project.slug}`}>{project.title}</a></h2>
+            <p class="meta">{project.date}</p>
+            <a href={`/projects/${project.slug}`} class="btn">Read More &rarr;</a>
+          </div>
+        ))}
+      </div>
+    ) : (
+      <p><em>{emptyMessage}</em></p>
+    )}
+  </section>
+</Layout>

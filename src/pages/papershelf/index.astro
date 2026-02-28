@@ -1,10 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getPublishedPosts } from '../../lib/notion';
+import { getPapers } from '../../lib/notion';
 import site from '../../data/site.json';
 
-const posts = await getPublishedPosts();
-const { title, description, emptyMessage } = site.pages.blog;
+const papers = await getPapers();
+const { title, description, emptyMessage } = site.pages.papershelf;
 ---
 
 <Layout title={title} description={description}>
@@ -12,13 +12,13 @@ const { title, description, emptyMessage } = site.pages.blog;
     <h1>{title}</h1>
     <p>{description}</p>
     <hr />
-    {posts.length > 0 ? (
+    {papers.length > 0 ? (
       <div class="posts-list">
-        {posts.map((post) => (
+        {papers.map((paper) => (
           <div class="card">
-            <h2><a href={`/blog/${post.slug}`}>{post.title}</a></h2>
-            <p class="meta">{post.date}</p>
-            <a href={`/blog/${post.slug}`} class="btn">Read More &rarr;</a>
+            <h2><a href={`/papershelf/${paper.slug}`}>{paper.title}</a></h2>
+            <p class="meta">{paper.date}</p>
+            <a href={`/papershelf/${paper.slug}`} class="btn">Read More &rarr;</a>
           </div>
         ))}
       </div>
