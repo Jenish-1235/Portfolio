@@ -2,6 +2,23 @@ import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 import { marked } from "marked";
 
+// Custom renderer: output Mermaid code blocks as <div class="mermaid"> so
+// the client-side Mermaid.js library can render them as diagrams.
+const renderer = new marked.Renderer();
+const originalCode = renderer.code.bind(renderer);
+renderer.code = function (token: {
+  type: "code";
+  raw: string;
+  text: string;
+  lang?: string;
+}) {
+  if (token.lang === "mermaid") {
+    return `<div class="mermaid">${token.text}</div>`;
+  }
+  return originalCode(token);
+};
+marked.use({ renderer });
+
 // Bypass local TLS certificate issues for Notion API (local dev)
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
