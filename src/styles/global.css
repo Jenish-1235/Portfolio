@@ -44,6 +44,14 @@ body {
   flex-direction: column;
 }
 
+@media (max-width: 1079px) {
+  body {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem 4vw;
+  }
+}
+
 main {
   flex: 1;
 }
