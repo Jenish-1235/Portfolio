@@ -11,13 +11,11 @@
   --content-padding: 1rem 5vw;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #111111;
-    --text-color: #eeeeee;
-    --link-color: #55b2ff;
-    --border-color: #eeeeee;
-  }
+:root.dark {
+  --bg-color: #111111;
+  --text-color: #eeeeee;
+  --link-color: #55b2ff;
+  --border-color: #eeeeee;
 }
 
 * {
@@ -112,11 +110,15 @@ hr {
 .nav-header {
   position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
   border-bottom: 2px solid var(--border-color);
   padding-bottom: 0.75rem;
+  gap: 1.5rem;
+}
+
+.nav-header .logo {
+  margin-right: auto;
 }
 
 .nav-header .logo a {
@@ -139,6 +141,43 @@ hr {
 
 .nav-header .nav-links a:hover {
   text-decoration: underline;
+}
+
+/* Theme toggle */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+
+.theme-toggle:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+/* Show sun in dark mode, moon in light mode */
+.icon-sun {
+  display: none;
+}
+.icon-moon {
+  display: block;
+}
+
+:root.dark .icon-sun {
+  display: block;
+}
+:root.dark .icon-moon {
+  display: none;
 }
 
 /* Mobile nav (hamburger) */
@@ -171,7 +210,7 @@ hr {
   .nav-toggle {
     display: block;
     position: absolute;
-    right: 0;
+    right: 2.5rem;
     width: 2.5rem;
     height: 2.5rem;
     opacity: 0;
@@ -186,7 +225,7 @@ hr {
     align-items: center;
     gap: 0.3rem;
     position: absolute;
-    right: 0;
+    right: 2.5rem;
     width: 2.5rem;
     height: 2.5rem;
     cursor: pointer;
@@ -289,10 +328,8 @@ hr {
   mix-blend-mode: multiply;
 }
 
-@media (prefers-color-scheme: dark) {
-  .profile-img {
-    mix-blend-mode: screen;
-  }
+:root.dark .profile-img {
+  mix-blend-mode: screen;
 }
 
 .profile-name {
@@ -308,10 +345,8 @@ hr {
   font-weight: 600;
 }
 
-@media (prefers-color-scheme: dark) {
-  .profile-tagline {
-    color: #ff8a80;
-  }
+:root.dark .profile-tagline {
+  color: #ff8a80;
 }
 
 .about-section p {

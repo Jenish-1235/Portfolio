@@ -23,6 +23,14 @@ const { title, description = `${site.name} - ${site.tagline}` } = Astro.props;
     <meta property="og:image" content="/profile.png" />
     <meta name="twitter:image" content="/profile.png" />
     <title>{site.name}</title>
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
   </head>
   <body>
     <Header />
@@ -30,5 +38,12 @@ const { title, description = `${site.name} - ${site.tagline}` } = Astro.props;
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      document.getElementById('theme-toggle').addEventListener('click', function() {
+        const root = document.documentElement;
+        root.classList.toggle('dark');
+        localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+      });
+    </script>
   </body>
 </html>
