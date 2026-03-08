@@ -4,7 +4,75 @@ import { marked } from "marked";
 import { markedHighlight } from "marked-highlight";
 import hljs from "highlight.js";
 
-// ── Syntax highlighting via highlight.js ────────────────────────────
+// ═══════════════════════════════════════════════════════════════════
+// Markdown → HTML pipeline
+//
+// Architecture (order matters):
+//   1. normalizeNotionMarkdown()  – fix Notion quirks
+//   2. extractMermaidBlocks()     – pull mermaid fences out of the
+//                                   markdown and leave placeholders
+//   3. marked.parse()             – convert markdown → HTML
+//      └─ markedHighlight/hljs    – syntax-highlight code blocks
+//      └─ custom renderer         – wrap code in UI (label + copy)
+//   4. restoreMermaidBlocks()     – swap placeholders with raw
+//                                   <pre class="mermaid"> elements
+//
+// Mermaid source never enters marked or highlight.js, so it can
+// never be corrupted regardless of future changes to either lib.
+// ═══════════════════════════════════════════════════════════════════
+
+// ── 1. Normalise Notion markdown ───────────────────────────────────
+function normalizeNotionMarkdown(markdown: string): string {
+  return markdown
+    .replace(/\r\n/g, "\n")
+    .replace(/&#96;/g, "`")
+    .replace(/\\`/g, "`");
+}
+
+// ── 2. Extract / restore mermaid ───────────────────────────────────
+interface MermaidExtraction {
+  markdown: string;                      // markdown with placeholders
+  blocks: Map<string, string>;           // placeholder → raw source
+}
+
+function extractMermaidBlocks(md: string): MermaidExtraction {
+  const blocks = new Map<string, string>();
+  let counter = 0;
+
+  // Match ```mermaid ... ``` fences (handles optional whitespace)
+  const fenceRe = /^```mermaid\s*\n([\s\S]*?)^```\s*$/gm;
+
+  const cleaned = md.replace(fenceRe, (_match, code: string) => {
+    const id = `<!--MERMAID_BLOCK_${counter++}-->`;
+    blocks.set(id, code.trimEnd());
+    return id;
+  });
+
+  return { markdown: cleaned, blocks };
+}
+
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function restoreMermaidBlocks(html: string, blocks: Map<string, string>): string {
+  for (const [placeholder, source] of blocks) {
+    html = html.replace(
+      // marked may wrap the HTML-comment placeholder in a <p>
+      new RegExp(`(<p>)?${placeholder.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(</p>)?`),
+      `<pre class="mermaid">${escapeHtml(source)}</pre>`,
+    );
+  }
+  return html;
+}
+
+// ── 3. Configure marked + highlight.js ─────────────────────────────
+// highlight.js never sees mermaid (it was already extracted).
 marked.use(
   markedHighlight({
     emptyLangClass: "hljs",
@@ -18,7 +86,6 @@ marked.use(
   }),
 );
 
-// ── Custom renderer ────────────────────────────────────────────────
 const renderer = new marked.Renderer();
 const originalCode = renderer.code.bind(renderer);
 renderer.code = function (token: {
@@ -27,12 +94,6 @@ renderer.code = function (token: {
   text: string;
   lang?: string;
 }) {
-  // Mermaid → rendered client-side by mermaid.js
-  if (token.lang === "mermaid") {
-    return `<div class="mermaid">${token.text}</div>`;
-  }
-
-  // Build the highlighted HTML via the default renderer
   const highlighted = originalCode(token);
   const label = token.lang || "code";
 
@@ -45,8 +106,6 @@ renderer.code = function (token: {
   </div>`;
 };
 
-// Inline code styling
-const originalCodespan = renderer.codespan.bind(renderer);
 renderer.codespan = function (token: {
   type: "codespan";
   raw: string;
@@ -57,11 +116,12 @@ renderer.codespan = function (token: {
 
 marked.use({ renderer });
 
-function normalizeNotionMarkdown(markdown: string): string {
-  return markdown
-    .replace(/\r\n/g, "\n")
-    .replace(/&#96;/g, "`")
-    .replace(/\\`/g, "`");
+// ── 4. Public helper used by getItemBySlug ─────────────────────────
+async function renderNotionMarkdown(raw: string): Promise<string> {
+  const normalized = normalizeNotionMarkdown(raw);
+  const { markdown, blocks } = extractMermaidBlocks(normalized);
+  const html = await marked.parse(markdown);
+  return restoreMermaidBlocks(html, blocks);
 }
 
 // Bypass local TLS certificate issues for Notion API (local dev)
@@ -210,11 +270,9 @@ async function getItemBySlug(
 
     const mdblocks = await n2m.pageToMarkdown(page.id);
     const mdString: any = n2m.toMarkdownString(mdblocks);
-    const markdown = normalizeNotionMarkdown(
-      mdString.parent || mdString.toString?.() || "",
-    );
+    const raw = mdString.parent || mdString.toString?.() || "";
 
-    const html = await marked.parse(markdown);
+    const html = await renderNotionMarkdown(raw);
 
     return { item: mapped, html };
   } catch (error) {

@@ -33,13 +33,8 @@ const { title, description = `${site.name} - ${site.tagline}` } = Astro.props;
     </script>
     <script is:inline src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
     <script is:inline>
-      document.addEventListener('DOMContentLoaded', function () {
-        var isDark = document.documentElement.classList.contains('dark');
-        mermaid.initialize({
-          startOnLoad: true,
-          theme: isDark ? 'dark' : 'default',
-        });
-      });
+      // Prevent Mermaid from auto-running; we control when it renders.
+      mermaid.initialize({ startOnLoad: false, maxTextSize: 100000 });
     </script>
   </head>
   <body>
@@ -49,44 +44,58 @@ const { title, description = `${site.name} - ${site.tagline}` } = Astro.props;
     </main>
     <Footer />
     <script is:inline>
-      document.getElementById('theme-toggle').addEventListener('click', function() {
-        const root = document.documentElement;
-        root.classList.toggle('dark');
-        const isDark = root.classList.contains('dark');
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      (function () {
+        // ── Mermaid ─────────────────────────────────────────────────
+        var mermaidEls = document.querySelectorAll('pre.mermaid');
 
-        // Re-render Mermaid diagrams with the new theme
-        if (typeof mermaid !== 'undefined') {
-          mermaid.initialize({ startOnLoad: false, theme: isDark ? 'dark' : 'default' });
-          document.querySelectorAll('.mermaid').forEach(function(el) {
-            var raw = el.getAttribute('data-mermaid-src');
-            if (raw) {
+        // Store raw source from textContent (auto-unescapes &lt; etc.)
+        mermaidEls.forEach(function (el) {
+          el.setAttribute('data-mermaid-src', el.textContent || '');
+        });
+
+        function renderMermaid() {
+          var isDark = document.documentElement.classList.contains('dark');
+          mermaid.initialize({
+            startOnLoad: false,
+            theme: isDark ? 'dark' : 'default',
+            maxTextSize: 100000,
+          });
+          mermaidEls.forEach(function (el) {
+            var src = el.getAttribute('data-mermaid-src');
+            if (src) {
               el.removeAttribute('data-processed');
-              el.innerHTML = raw;
+              el.textContent = src;
             }
           });
-          mermaid.run();
+          if (mermaidEls.length) {
+            mermaid.run({ nodes: mermaidEls }).catch(function (err) {
+              console.warn('Mermaid render error:', err);
+            });
+          }
         }
-      });
 
-      // Store the raw Mermaid source so we can re-render on theme change
-      document.querySelectorAll('.mermaid').forEach(function(el) {
-        if (!el.getAttribute('data-mermaid-src')) {
-          el.setAttribute('data-mermaid-src', el.textContent || '');
-        }
-      });
+        renderMermaid();
 
-      // Copy-to-clipboard for code blocks
-      document.querySelectorAll('.copy-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          var codeEl = btn.closest('.code-block').querySelector('code');
-          if (!codeEl) return;
-          navigator.clipboard.writeText(codeEl.textContent || '').then(function() {
-            btn.textContent = 'Copied!';
-            setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+        // ── Theme toggle ────────────────────────────────────────────
+        document.getElementById('theme-toggle').addEventListener('click', function () {
+          var root = document.documentElement;
+          root.classList.toggle('dark');
+          localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+          renderMermaid();
+        });
+
+        // ── Copy-to-clipboard for code blocks ───────────────────────
+        document.querySelectorAll('.copy-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var codeEl = btn.closest('.code-block').querySelector('code');
+            if (!codeEl) return;
+            navigator.clipboard.writeText(codeEl.textContent || '').then(function () {
+              btn.textContent = 'Copied!';
+              setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
+            });
           });
         });
-      });
+      })();
     </script>
   </body>
 </html>
