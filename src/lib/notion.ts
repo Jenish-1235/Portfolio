@@ -1,9 +1,24 @@
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
 import { marked } from "marked";
+import { markedHighlight } from "marked-highlight";
+import hljs from "highlight.js";
 
-// Custom renderer: output Mermaid code blocks as <div class="mermaid"> so
-// the client-side Mermaid.js library can render them as diagrams.
+// ── Syntax highlighting via highlight.js ────────────────────────────
+marked.use(
+  markedHighlight({
+    emptyLangClass: "hljs",
+    langPrefix: "hljs language-",
+    highlight(code: string, lang: string) {
+      if (lang && hljs.getLanguage(lang)) {
+        return hljs.highlight(code, { language: lang }).value;
+      }
+      return hljs.highlightAuto(code).value;
+    },
+  }),
+);
+
+// ── Custom renderer ────────────────────────────────────────────────
 const renderer = new marked.Renderer();
 const originalCode = renderer.code.bind(renderer);
 renderer.code = function (token: {
@@ -12,12 +27,42 @@ renderer.code = function (token: {
   text: string;
   lang?: string;
 }) {
+  // Mermaid → rendered client-side by mermaid.js
   if (token.lang === "mermaid") {
     return `<div class="mermaid">${token.text}</div>`;
   }
-  return originalCode(token);
+
+  // Build the highlighted HTML via the default renderer
+  const highlighted = originalCode(token);
+  const label = token.lang || "code";
+
+  return `<div class="code-block">
+    <div class="code-block-header">
+      <span class="code-lang">${label}</span>
+      <button class="copy-btn" aria-label="Copy code">Copy</button>
+    </div>
+    ${highlighted}
+  </div>`;
 };
+
+// Inline code styling
+const originalCodespan = renderer.codespan.bind(renderer);
+renderer.codespan = function (token: {
+  type: "codespan";
+  raw: string;
+  text: string;
+}) {
+  return `<code class="inline-code">${token.text}</code>`;
+};
+
 marked.use({ renderer });
+
+function normalizeNotionMarkdown(markdown: string): string {
+  return markdown
+    .replace(/\r\n/g, "\n")
+    .replace(/&#96;/g, "`")
+    .replace(/\\`/g, "`");
+}
 
 // Bypass local TLS certificate issues for Notion API (local dev)
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -165,10 +210,11 @@ async function getItemBySlug(
 
     const mdblocks = await n2m.pageToMarkdown(page.id);
     const mdString: any = n2m.toMarkdownString(mdblocks);
-
-    const html = await marked.parse(
+    const markdown = normalizeNotionMarkdown(
       mdString.parent || mdString.toString?.() || "",
     );
+
+    const html = await marked.parse(markdown);
 
     return { item: mapped, html };
   } catch (error) {

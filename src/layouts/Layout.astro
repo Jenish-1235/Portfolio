@@ -75,6 +75,18 @@ const { title, description = `${site.name} - ${site.tagline}` } = Astro.props;
           el.setAttribute('data-mermaid-src', el.textContent || '');
         }
       });
+
+      // Copy-to-clipboard for code blocks
+      document.querySelectorAll('.copy-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var codeEl = btn.closest('.code-block').querySelector('code');
+          if (!codeEl) return;
+          navigator.clipboard.writeText(codeEl.textContent || '').then(function() {
+            btn.textContent = 'Copied!';
+            setTimeout(function() { btn.textContent = 'Copy'; }, 1500);
+          });
+        });
+      });
     </script>
   </body>
 </html>

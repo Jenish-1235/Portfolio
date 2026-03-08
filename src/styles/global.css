@@ -470,15 +470,161 @@ hr {
   border: 2px solid var(--border-color);
 }
 
-.notion-content pre {
-  background: var(--text-color);
-  color: var(--bg-color);
-  padding: 1rem;
-  overflow-x: auto;
+/* ── Code blocks ─────────────────────────────────────────── */
+.code-block {
+  position: relative;
+  margin: 1.5rem 0;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  overflow: hidden;
 }
 
-.notion-content code {
-  font-family: monospace;
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: var(--font-family);
+  background: var(--border-color);
+  color: var(--bg-color);
+}
+
+.code-lang {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+.copy-btn {
+  background: transparent;
+  border: 1px solid var(--bg-color);
+  color: var(--bg-color);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-family: var(--font-family);
+  transition: opacity 0.15s;
+}
+.copy-btn:hover {
+  opacity: 0.7;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.code-block code {
+  font-family:
+    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+/* highlight.js theme — light */
+.code-block pre,
+.code-block pre code {
+  background: #fafafa;
+  color: #383a42;
+}
+.code-block .hljs-keyword,
+.code-block .hljs-selector-tag,
+.code-block .hljs-built_in {
+  color: #a626a4;
+}
+.code-block .hljs-string,
+.code-block .hljs-attr {
+  color: #50a14f;
+}
+.code-block .hljs-number,
+.code-block .hljs-literal {
+  color: #986801;
+}
+.code-block .hljs-comment {
+  color: #a0a1a7;
+  font-style: italic;
+}
+.code-block .hljs-function .hljs-title,
+.code-block .hljs-title {
+  color: #4078f2;
+}
+.code-block .hljs-variable,
+.code-block .hljs-params {
+  color: #383a42;
+}
+.code-block .hljs-type,
+.code-block .hljs-class .hljs-title {
+  color: #c18401;
+}
+
+/* highlight.js theme — dark */
+:root.dark .code-block pre,
+:root.dark .code-block pre code {
+  background: #1e1e1e;
+  color: #d4d4d4;
+}
+:root.dark .code-block .hljs-keyword,
+:root.dark .code-block .hljs-selector-tag,
+:root.dark .code-block .hljs-built_in {
+  color: #c586c0;
+}
+:root.dark .code-block .hljs-string,
+:root.dark .code-block .hljs-attr {
+  color: #ce9178;
+}
+:root.dark .code-block .hljs-number,
+:root.dark .code-block .hljs-literal {
+  color: #b5cea8;
+}
+:root.dark .code-block .hljs-comment {
+  color: #6a9955;
+  font-style: italic;
+}
+:root.dark .code-block .hljs-function .hljs-title,
+:root.dark .code-block .hljs-title {
+  color: #dcdcaa;
+}
+:root.dark .code-block .hljs-variable,
+:root.dark .code-block .hljs-params {
+  color: #9cdcfe;
+}
+:root.dark .code-block .hljs-type,
+:root.dark .code-block .hljs-class .hljs-title {
+  color: #4ec9b0;
+}
+
+/* Standalone pre (no wrapper) */
+.notion-content > pre {
+  background: #fafafa;
+  color: #383a42;
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+}
+:root.dark .notion-content > pre {
+  background: #1e1e1e;
+  color: #d4d4d4;
+}
+
+/* ── Inline code ─────────────────────────────────────────── */
+.inline-code,
+.notion-content code:not(.code-block code):not(.hljs) {
+  font-family:
+    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  background: rgba(135, 131, 120, 0.15);
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  font-size: 0.88em;
+  word-break: break-word;
+}
+:root.dark .inline-code,
+:root.dark .notion-content code:not(.code-block code):not(.hljs) {
+  background: rgba(200, 200, 200, 0.15);
 }
 
 .notion-content blockquote {
