@@ -10,6 +10,7 @@ interface Props {
 }
 
 const { title, description = `${site.name} - ${site.tagline}` } = Astro.props;
+const pageTitle = title === 'Home' ? site.name : `${title} | ${site.name}`;
 ---
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@ const { title, description = `${site.name} - ${site.tagline}` } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <meta property="og:image" content="/profile.png" />
     <meta name="twitter:image" content="/profile.png" />
-    <title>{site.name}</title>
+    <title>{pageTitle}</title>
     <script is:inline>
       (function() {
         const theme = localStorage.getItem('theme');

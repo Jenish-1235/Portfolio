@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getNotes, getNoteBySlug, getYouTubeId } from '../../lib/notion';
+
+export async function getStaticPaths() {
+  const notes = await getNotes();
+  return notes.map((note) => ({
+    params: { slug: note.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const { note, html } = await getNoteBySlug(slug as string);
+
+if (!note) {
+  return Astro.redirect('/404');
+}
+
+const videoId = note.youtubeUrl ? getYouTubeId(note.youtubeUrl) : null;
+---
+
+<Layout title={note.title}>
+  <article class="section">
+    <header style="margin-bottom: 2rem;">
+      <a href="/notes">&larr; Back to Notes</a>
+      <h1>{note.title}</h1>
+      <p class="meta">Published on {note.date}</p>
+    </header>
+
+    {videoId && (
+      <div class="video-embed">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+          title={note.title}
+          loading="lazy"
+          allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    )}
+
+    {(note.pdfUrl || note.youtubeUrl) && (
+      <div class="note-actions">
+        {note.pdfUrl && (
+          <a href={note.pdfUrl} target="_blank" rel="noopener noreferrer" class="btn">Open PDF</a>
+        )}
+        {note.youtubeUrl && (
+          <a href={note.youtubeUrl} target="_blank" rel="noopener noreferrer" class="btn">Watch on YouTube</a>
+        )}
+      </div>
+    )}
+
+    <div class="notion-content" set:html={html}></div>
+  </article>
+</Layout>

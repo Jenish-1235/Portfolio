@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
-import { getPublishedPosts, getProjects, getPapers } from '../lib/notion';
+import { getPublishedPosts, getProjects, getPapers, getNotes } from '../lib/notion';
 import site from '../data/site.json';
 
 const posts = await getPublishedPosts();
@@ -10,6 +10,8 @@ const projects = await getProjects();
 const recentProjects = projects.slice(0, 10);
 const papers = await getPapers();
 const recentPapers = papers.slice(0, 10);
+const notes = await getNotes();
+const recentNotes = notes.slice(0, 10);
 const { home } = site;
 ---
 
@@ -89,6 +91,25 @@ const { home } = site;
           </ul>
         ) : (
           <p class="empty-message"><em>{home.emptyPapershelfMessage}</em></p>
+        )}
+      </section>
+      <section class="content-block">
+        <h2 class="content-heading">
+          {home.recentNotesTitle}
+          <span class="content-link">• <a href="/notes">{home.recentNotesArchive} &rarr;</a></span>
+        </h2>
+        <p class="content-subtitle">{home.recentNotesSubtitle}</p>
+        {recentNotes.length > 0 ? (
+          <ul class="compact-list">
+            {recentNotes.map((note) => (
+              <li>
+                <span class="date">{new Date(note.date).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}</span>
+                <a href={`/notes/${note.slug}`}>{note.title}</a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="empty-message"><em>{home.emptyNotesMessage}</em></p>
         )}
       </section>
     </div>

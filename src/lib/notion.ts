@@ -135,7 +135,7 @@ const notion = new Client({
 // Initialize Notion to Markdown converter
 const n2m = new NotionToMarkdown({ notionClient: notion });
 
-export type ContentType = "blog" | "project" | "paper";
+export type ContentType = "blog" | "project" | "paper" | "note";
 
 export interface ContentItem {
   id: string;
@@ -144,6 +144,8 @@ export interface ContentItem {
   date: string;
   type: ContentType;
   published: boolean;
+  pdfUrl?: string;
+  youtubeUrl?: string;
 }
 
 function slugify(text: string): string {
@@ -165,7 +167,7 @@ function mapPageToItem(page: any): ContentItem | null {
   }
 
   const normalized = typeName.toLowerCase() as ContentType;
-  if (!["blog", "project", "paper"].includes(normalized)) {
+  if (!["blog", "project", "paper", "note"].includes(normalized)) {
     return null;
   }
 
@@ -180,6 +182,8 @@ function mapPageToItem(page: any): ContentItem | null {
       new Date().toISOString().split("T")[0],
     type: normalized,
     published: page.properties.Published?.checkbox || false,
+    pdfUrl: page.properties.PDF?.url || undefined,
+    youtubeUrl: page.properties.YouTube?.url || undefined,
   };
 }
 
@@ -229,6 +233,10 @@ export async function getProjects(): Promise<ContentItem[]> {
 
 export async function getPapers(): Promise<ContentItem[]> {
   return queryByType("paper");
+}
+
+export async function getNotes(): Promise<ContentItem[]> {
+  return queryByType("note");
 }
 
 async function getItemBySlug(
@@ -300,4 +308,19 @@ export async function getPaperBySlug(
 ): Promise<{ paper: ContentItem | null; html: string }> {
   const { item, html } = await getItemBySlug(slug, "paper");
   return { paper: item, html };
+}
+
+export async function getNoteBySlug(
+  slug: string,
+): Promise<{ note: ContentItem | null; html: string }> {
+  const { item, html } = await getItemBySlug(slug, "note");
+  return { note: item, html };
+}
+
+// Accepts watch, youtu.be, shorts, live and embed URLs.
+export function getYouTubeId(url: string): string | null {
+  const match = url.match(
+    /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/,
+  );
+  return match ? match[1] : null;
 }

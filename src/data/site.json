@@ -20,6 +20,7 @@
     { "label": "Blog", "href": "/blog" },
     { "label": "Projects", "href": "/projects" },
     { "label": "Papershelf", "href": "/papershelf" },
+    { "label": "Notes", "href": "/notes" },
     { "label": "Experience", "href": "/experience" }
   ],
   "footer": {
@@ -39,7 +40,11 @@
     "recentPapershelfTitle": "Papershelf",
     "recentPapershelfArchive": "View all",
     "recentPapershelfSubtitle": "Papers I have read recently.",
-    "emptyPapershelfMessage": "No papers logged yet."
+    "emptyPapershelfMessage": "No papers logged yet.",
+    "recentNotesTitle": "Notes",
+    "recentNotesArchive": "View all",
+    "recentNotesSubtitle": "PDF notes from my YouTube videos.",
+    "emptyNotesMessage": "No notes uploaded yet."
   },
   "pages": {
     "experience": {
@@ -60,6 +65,11 @@
       "title": "Papershelf",
       "description": "Papers I have read recently and my notes about them.",
       "emptyMessage": "No papers logged yet."
+    },
+    "notes": {
+      "title": "Notes",
+      "description": "Notes from my YouTube videos, available as PDFs.",
+      "emptyMessage": "No notes uploaded yet. Check back soon!"
     }
   }
 }
