@@ -490,6 +490,74 @@ hr {
   text-decoration: underline;
 }
 
+/* Projects */
+.project-list li.project-compact {
+  display: block;
+  margin-bottom: 0.9rem;
+}
+
+.project-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.project-card .project-title-row h2 {
+  margin: 0;
+}
+
+.project-name {
+  font-weight: 700;
+}
+
+.project-summary {
+  margin: 0.2rem 0;
+}
+
+.project-compact .project-summary,
+.project-outcome {
+  font-size: 0.9rem;
+}
+
+.project-outcome {
+  margin: 0.2rem 0 0;
+  opacity: 0.75;
+}
+
+.status {
+  font-family: monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.05rem 0.45rem;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+}
+
+.status-shipped {
+  color: #2e7d32;
+}
+
+:root.dark .status-shipped {
+  color: #81c784;
+}
+
+.status-lab {
+  color: #888;
+}
+
+.project-note {
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.project-stack {
+  font-family: monospace;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
 /* Notion markdown content */
 .notion-content img {
   max-width: 100%;

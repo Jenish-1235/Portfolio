@@ -1,0 +1,49 @@
+{
+  "featured": [
+    {
+      "name": "Scenr.io",
+      "role": "Founder",
+      "status": "Shipped",
+      "statusDetail": "Paying customers",
+      "summary": "Hiring for infrastructure roles by dropping the candidate into a simulated real incident and measuring how they debug it.",
+      "why": "At Fampay I ran release engineering for 100 engineers across 180 repositories, and watched us hire infrastructure people on LeetCode scores that told us nothing about how they behave when production is down.",
+      "what": [
+        "Built the product and sold it myself: more than 100 prospect conversations, closing Scaler, Fampay and ArcFront.",
+        "Customers used it to hire a Head of Infra, SDE 2s, database administrators and security engineers."
+      ],
+      "outcome": "Hiring for those roles went from weeks to days. Raised angel funding and received acquisition offers.",
+      "note": "Halfway through, customers asked to run AI agents through the same incidents. That is how I got into agent evaluation.",
+      "links": [{ "label": "scenr.io", "href": "https://scenr.io" }]
+    },
+    {
+      "name": "RAS — Release Any System",
+      "role": "Built alone",
+      "status": "Lab",
+      "statusDetail": "Not yet in outside production",
+      "summary": "Release automation for teams that run on bare metal and VMs.",
+      "why": "Kubernetes already has good GitOps tools. Self-managed servers have no standard release process, and that is where one platform engineer is stretched thinnest.",
+      "what": [
+        "Sets up CI, progressive delivery, health checks, load tests during the release, and rollback.",
+        "One Go binary with no database. Every event goes to a hash-chained ledger, and AI agents act only through scoped, expiring grants.",
+        "Run against more than 100 open source repositories. The largest system deployed with it is Gitea."
+      ],
+      "limit": "All of that is in my own lab. No outside team runs it in production yet.",
+      "stack": ["Go", "systemd", "Docker", "Cloudflare Workers", "Kubernetes"],
+      "links": [{ "label": "ras.devcat.site", "href": "https://ras.devcat.site" }]
+    },
+    {
+      "name": "CausalCircuit — AI SRE",
+      "role": "Built alone",
+      "status": "Lab",
+      "statusDetail": "Not yet in outside production",
+      "summary": "An on-call agent that works out which fault caused which symptom during an incident, and research into why AI SRE agents that know the answer still fail to find it.",
+      "what": [
+        "Connects to the infrastructure tools, collects telemetry and logs, and traces each symptom back to the fault behind it.",
+        "Every action runs under tightly scoped permissions.",
+        "The research, Knowing But Not Looking, tests whether small, targeted weight edits repair investigation failures without retraining."
+      ],
+      "limit": "Runs only in my lab so far, and the results are not published yet.",
+      "links": [{ "label": "causalcircuit.live", "href": "https://causalcircuit.live" }]
+    }
+  ]
+}

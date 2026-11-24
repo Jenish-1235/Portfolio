@@ -20,19 +20,30 @@
       ]
     },
     {
-      "title": "Backend Intern – Platform Engineering",
-      "meta": "FamPay | Bengaluru, India | 2025 – Present",
+      "title": "Infrastructure Engineer",
+      "meta": "FamPay | Bengaluru, India | Jan 2026 – Aug 2026",
       "description": [
-        "Worked closely with team during crucial codebase migration phase from forgejo to gitlab.",
-        "Designed and maintained CI/CD pipelines enabling automated builds, Docker image generation, testing, and controlled rollouts.",
-        "Built and maintained UAT environments mirroring production for safe feature validation and release verification.",
-        "Improved observability, autoscaling policies, and infrastructure reliability across services."
+        "Ran release engineering for 100 engineers across 180 repositories.",
+        "Led the migration from Forgejo to self-hosted GitLab.",
+        "Designed and maintained CI/CD pipelines for automated builds, Docker image generation, testing and controlled rollouts.",
+        "Built and maintained UAT environments that mirror production, for safe feature validation and release verification.",
+        "Improved observability, autoscaling policies and infrastructure reliability across services."
+      ]
+    },
+    {
+      "title": "Founder",
+      "meta": "Scenr.io | May 2026 – Present",
+      "description": [
+        "Built a hiring platform where infrastructure candidates debug a simulated real incident, and we measure how they work.",
+        "Sold it myself: more than 100 prospect conversations, closing Scaler, Fampay and ArcFront.",
+        "Customers hired a Head of Infra, SDE 2s, database administrators and security engineers with it, and hiring for those roles went from weeks to days.",
+        "Raised angel funding and received acquisition offers. Customer demand to run AI agents through the same incidents led me into agent evaluation."
       ]
     }
   ],
   "education": [
     {
-      "title": "Bachelor of Science (B.Sc) in Computer Science",
+      "title": "Bachelor of Science (B.Sc) in Computer Science, online",
       "meta": "Birla Institute of Technology and Science, Pilani | 2024 – 2027"
     }
   ]

@@ -1,10 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
 import { getProjects } from '../../lib/notion';
 import site from '../../data/site.json';
+import projectsData from '../../data/projects.json';
 
-const projects = await getProjects();
-const { title, description, emptyMessage } = site.pages.projects;
+const writeups = await getProjects();
+const { title, description, writeupsTitle } = site.pages.projects;
 ---
 
 <Layout title={title} description={description}>
@@ -12,18 +14,25 @@ const { title, description, emptyMessage } = site.pages.projects;
     <h1>{title}</h1>
     <p>{description}</p>
     <hr />
-    {projects.length > 0 ? (
+    <div class="posts-list">
+      {projectsData.featured.map((project) => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+  </section>
+
+  {writeups.length > 0 && (
+    <section class="section">
+      <h2>{writeupsTitle}</h2>
       <div class="posts-list">
-        {projects.map((project) => (
+        {writeups.map((project) => (
           <div class="card">
-            <h2><a href={`/projects/${project.slug}`}>{project.title}</a></h2>
+            <h3><a href={`/projects/${project.slug}`}>{project.title}</a></h3>
             <p class="meta">{project.date}</p>
             <a href={`/projects/${project.slug}`} class="btn">Read More &rarr;</a>
           </div>
         ))}
       </div>
-    ) : (
-      <p><em>{emptyMessage}</em></p>
-    )}
-  </section>
+    </section>
+  )}
 </Layout>

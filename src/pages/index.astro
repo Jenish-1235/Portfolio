@@ -1,13 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
-import { getPublishedPosts, getProjects, getPapers, getNotes } from '../lib/notion';
+import ProjectCard from '../components/ProjectCard.astro';
+import { getPublishedPosts, getPapers, getNotes } from '../lib/notion';
 import site from '../data/site.json';
+import projectsData from '../data/projects.json';
 
 const posts = await getPublishedPosts();
 const recentPosts = posts.slice(0, 10);
-const projects = await getProjects();
-const recentProjects = projects.slice(0, 10);
 const papers = await getPapers();
 const recentPapers = papers.slice(0, 10);
 const notes = await getNotes();
@@ -36,6 +36,19 @@ const { home } = site;
     <div class="right-column">
       <section class="content-block">
         <h2 class="content-heading">
+          {home.recentProjectsTitle}
+          <span class="content-link">• <a href="/projects">{home.recentProjectsArchive} &rarr;</a></span>
+        </h2>
+        <p class="content-subtitle">{home.recentProjectsSubtitle}</p>
+        <ul class="compact-list project-list">
+          {projectsData.featured.map((project) => (
+            <ProjectCard project={project} variant="compact" />
+          ))}
+        </ul>
+      </section>
+
+      <section class="content-block">
+        <h2 class="content-heading">
           {home.recentBlogTitle}
           <span class="content-link">• <a href="/blog">{home.recentBlogArchive} &rarr;</a></span>
         </h2>
@@ -51,26 +64,6 @@ const { home } = site;
           </ul>
         ) : (
           <p class="empty-message"><em>{home.emptyBlogMessage}</em></p>
-        )}
-      </section>
-
-      <section class="content-block">
-        <h2 class="content-heading">
-          {home.recentProjectsTitle}
-          <span class="content-link">• <a href="/projects">{home.recentProjectsArchive} &rarr;</a></span>
-        </h2>
-        <p class="content-subtitle">{home.recentProjectsSubtitle}</p>
-        {recentProjects.length > 0 ? (
-          <ul class="compact-list">
-            {recentProjects.map((project) => (
-              <li>
-                <span class="date">{new Date(project.date).toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' })}</span>
-                <a href={`/projects/${project.slug}`}>{project.title}</a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p class="empty-message"><em>{home.emptyProjectsMessage}</em></p>
         )}
       </section>
 

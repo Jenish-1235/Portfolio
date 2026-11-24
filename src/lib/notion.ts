@@ -111,7 +111,7 @@ renderer.codespan = function (token: {
   raw: string;
   text: string;
 }) {
-  return `<code class="inline-code">${token.text}</code>`;
+  return `<code class="inline-code">${escapeHtml(token.text)}</code>`;
 };
 
 marked.use({ renderer });
@@ -177,9 +177,10 @@ function mapPageToItem(page: any): ContentItem | null {
     id: page.id,
     title,
     slug: slugify(title),
-    date:
-      page.properties.Date?.date?.start ||
-      new Date().toISOString().split("T")[0],
+    // The Notion "Date" property is "last edited time", which would move a
+    // post every time it is touched. Use a real date property if one is set,
+    // otherwise the page's creation date.
+    date: (page.properties.Date?.date?.start || page.created_time || "").split("T")[0],
     type: normalized,
     published: page.properties.Published?.checkbox || false,
     pdfUrl: page.properties.PDF?.url || undefined,
@@ -206,7 +207,7 @@ async function queryByType(type: ContentType): Promise<ContentItem[]> {
       },
       sorts: [
         {
-          property: "Date",
+          timestamp: "created_time",
           direction: "descending",
         },
       ],
