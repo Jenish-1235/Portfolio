@@ -7,8 +7,6 @@ interface Link {
 interface Project {
   name: string;
   role: string;
-  status: string;
-  statusDetail?: string;
   summary: string;
   why?: string;
   what?: string[];
@@ -26,7 +24,6 @@ interface Props {
 
 const { project, variant = 'full' } = Astro.props;
 const primary = project.links?.[0];
-const statusClass = `status status-${project.status.toLowerCase()}`;
 ---
 
 {variant === 'compact' ? (
@@ -37,7 +34,6 @@ const statusClass = `status status-${project.status.toLowerCase()}`;
       ) : (
         <span class="project-name">{project.name}</span>
       )}
-      <span class={statusClass} title={project.statusDetail}>{project.status}</span>
     </div>
     <p class="project-summary">{project.summary}</p>
     {project.outcome && <p class="project-outcome">{project.outcome}</p>}
@@ -46,11 +42,8 @@ const statusClass = `status status-${project.status.toLowerCase()}`;
   <div class="card project-card">
     <div class="project-title-row">
       <h2>{project.name}</h2>
-      <span class={statusClass}>{project.status}</span>
     </div>
-    <p class="meta">
-      {project.role}{project.statusDetail && ` · ${project.statusDetail}`}
-    </p>
+    <p class="meta">{project.role}</p>
     <p class="project-summary">{project.summary}</p>
     {project.why && <p><strong>Why:</strong> {project.why}</p>}
     {project.what && project.what.length > 0 && (

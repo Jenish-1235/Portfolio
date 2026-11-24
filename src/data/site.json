@@ -36,7 +36,7 @@
     "emptyBlogMessage": "No posts published yet. Check back soon!",
     "recentProjectsTitle": "Work",
     "recentProjectsArchive": "Details",
-    "recentProjectsSubtitle": "What I have shipped, and what is still in the lab.",
+    "recentProjectsSubtitle": "Things I have built and shipped.",
     "recentPapershelfTitle": "Papershelf",
     "recentPapershelfArchive": "View all",
     "recentPapershelfSubtitle": "Papers I have read recently.",
@@ -56,7 +56,7 @@
       "emptyMessage": "No blog posts found. I haven't published anything yet, or the Notion database is not connected." },
     "projects": {
       "title": "Projects",
-      "description": "Things I have shipped, and things I am still proving in my lab. Each one says which.",
+      "description": "What I have built, why, and where each one stands.",
       "writeupsTitle": "Write-ups" },
     "papershelf": {
       "title": "Papershelf",

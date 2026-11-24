@@ -525,28 +525,6 @@ hr {
   opacity: 0.75;
 }
 
-.status {
-  font-family: monospace;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 0.05rem 0.45rem;
-  border: 1px solid currentColor;
-  white-space: nowrap;
-}
-
-.status-shipped {
-  color: #2e7d32;
-}
-
-:root.dark .status-shipped {
-  color: #81c784;
-}
-
-.status-lab {
-  color: #888;
-}
-
 .project-note {
   font-style: italic;
   opacity: 0.8;
