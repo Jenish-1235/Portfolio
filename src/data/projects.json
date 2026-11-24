@@ -1,7 +1,9 @@
 {
   "featured": [
     {
+      "slug": "scenr",
       "name": "Scenr.io",
+      "date": "2026-05",
       "role": "Founder",
       "summary": "Hiring for infrastructure roles by dropping the candidate into a simulated real incident and measuring how they debug it.",
       "why": "At Fampay I ran release engineering for 100 engineers across 180 repositories, and watched us hire infrastructure people on LeetCode scores that told us nothing about how they behave when production is down.",
@@ -14,7 +16,9 @@
       "links": [{ "label": "scenr.io", "href": "https://scenr.io" }]
     },
     {
+      "slug": "ras",
       "name": "RAS: Release Any System",
+      "date": "2026-11",
       "role": "Built alone",
       "summary": "Release automation for teams that run on bare metal and VMs.",
       "why": "Kubernetes already has good GitOps tools. Self-managed servers have no standard release process, and that is where one platform engineer is stretched thinnest.",
@@ -24,17 +28,13 @@
         "Run against more than 100 open source repositories. The largest system deployed with it is Gitea."
       ],
       "limit": "All of that is in my own lab. No outside team runs it in production yet.",
-      "stack": [
-        "Go",
-        "systemd",
-        "Docker",
-        "Cloudflare Workers",
-        "Kubernetes"
-      ],
+      "stack": ["Go", "systemd", "Docker", "Cloudflare Workers", "Kubernetes"],
       "links": [{ "label": "ras.devcat.site", "href": "https://ras.devcat.site" }]
     },
     {
+      "slug": "causalcircuit",
       "name": "CausalCircuit: AI SRE",
+      "date": "2026-09",
       "role": "Built alone",
       "summary": "An on-call agent that works out which fault caused which symptom during an incident, and research into why AI SRE agents that know the answer still fail to find it.",
       "what": [

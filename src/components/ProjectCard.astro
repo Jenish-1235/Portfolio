@@ -5,7 +5,9 @@ interface Link {
 }
 
 interface Project {
+  slug: string;
   name: string;
+  date: string;
   role: string;
   summary: string;
   why?: string;
@@ -19,50 +21,34 @@ interface Project {
 
 interface Props {
   project: Project;
-  variant?: 'compact' | 'full';
 }
 
-const { project, variant = 'full' } = Astro.props;
-const primary = project.links?.[0];
+const { project } = Astro.props;
 ---
 
-{variant === 'compact' ? (
-  <li class="project-compact">
-    <div class="project-title-row">
-      {primary ? (
-        <a href={primary.href} target="_blank" rel="noopener noreferrer" class="project-name">{project.name}</a>
-      ) : (
-        <span class="project-name">{project.name}</span>
-      )}
-    </div>
-    <p class="project-summary">{project.summary}</p>
-    {project.outcome && <p class="project-outcome">{project.outcome}</p>}
-  </li>
-) : (
-  <div class="card project-card">
-    <div class="project-title-row">
-      <h2>{project.name}</h2>
-    </div>
-    <p class="meta">{project.role}</p>
-    <p class="project-summary">{project.summary}</p>
-    {project.why && <p><strong>Why:</strong> {project.why}</p>}
-    {project.what && project.what.length > 0 && (
-      <ul>
-        {project.what.map((item) => <li>{item}</li>)}
-      </ul>
-    )}
-    {project.outcome && <p><strong>Result:</strong> {project.outcome}</p>}
-    {project.limit && <p><strong>Honest limit:</strong> {project.limit}</p>}
-    {project.note && <p class="project-note">{project.note}</p>}
-    {project.stack && project.stack.length > 0 && (
-      <p class="project-stack">{project.stack.join(' · ')}</p>
-    )}
-    {project.links && project.links.length > 0 && (
-      <div class="note-actions">
-        {project.links.map((link) => (
-          <a href={link.href} target="_blank" rel="noopener noreferrer" class="btn">{link.label} &rarr;</a>
-        ))}
-      </div>
-    )}
+<div class="card project-card" id={project.slug}>
+  <div class="project-title-row">
+    <h2>{project.name}</h2>
   </div>
-)}
+  <p class="meta">{project.role}</p>
+  <p class="project-summary">{project.summary}</p>
+  {project.why && <p><strong>Why:</strong> {project.why}</p>}
+  {project.what && project.what.length > 0 && (
+    <ul>
+      {project.what.map((item) => <li>{item}</li>)}
+    </ul>
+  )}
+  {project.outcome && <p><strong>Result:</strong> {project.outcome}</p>}
+  {project.limit && <p><strong>Honest limit:</strong> {project.limit}</p>}
+  {project.note && <p class="project-note">{project.note}</p>}
+  {project.stack && project.stack.length > 0 && (
+    <p class="project-stack">{project.stack.join(' · ')}</p>
+  )}
+  {project.links && project.links.length > 0 && (
+    <div class="note-actions">
+      {project.links.map((link) => (
+        <a href={link.href} target="_blank" rel="noopener noreferrer" class="btn">{link.label} &rarr;</a>
+      ))}
+    </div>
+  )}
+</div>

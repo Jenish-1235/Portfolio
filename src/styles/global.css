@@ -491,11 +491,6 @@ hr {
 }
 
 /* Projects */
-.project-list li.project-compact {
-  display: block;
-  margin-bottom: 0.9rem;
-}
-
 .project-title-row {
   display: flex;
   align-items: baseline;
@@ -507,22 +502,8 @@ hr {
   margin: 0;
 }
 
-.project-name {
-  font-weight: 700;
-}
-
 .project-summary {
   margin: 0.2rem 0;
-}
-
-.project-compact .project-summary,
-.project-outcome {
-  font-size: 0.9rem;
-}
-
-.project-outcome {
-  margin: 0.2rem 0 0;
-  opacity: 0.75;
 }
 
 .project-note {

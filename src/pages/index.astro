@@ -1,13 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SocialLinks from '../components/SocialLinks.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import { getPublishedPosts, getPapers, getNotes } from '../lib/notion';
+import { getPublishedPosts, getProjects, getPapers, getNotes } from '../lib/notion';
 import site from '../data/site.json';
 import projectsData from '../data/projects.json';
 
 const posts = await getPublishedPosts();
 const recentPosts = posts.slice(0, 10);
+// Featured projects (local) and project write-ups (Notion), newest first.
+const writeups = await getProjects();
+const recentProjects = [
+  ...projectsData.featured.map((p) => ({ title: p.name, date: p.date, href: `/projects#${p.slug}` })),
+  ...writeups.map((w) => ({ title: w.title, date: w.date, href: `/projects/${w.slug}` })),
+]
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .slice(0, 10);
+const monthYear = (date: string) =>
+  new Date(`${date.slice(0, 7)}-01T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
 const papers = await getPapers();
 const recentPapers = papers.slice(0, 10);
 const notes = await getNotes();
@@ -40,9 +49,12 @@ const { home } = site;
           <span class="content-link">• <a href="/projects">{home.recentProjectsArchive} &rarr;</a></span>
         </h2>
         <p class="content-subtitle">{home.recentProjectsSubtitle}</p>
-        <ul class="compact-list project-list">
-          {projectsData.featured.map((project) => (
-            <ProjectCard project={project} variant="compact" />
+        <ul class="compact-list">
+          {recentProjects.map((project) => (
+            <li>
+              <span class="date">{monthYear(project.date)}</span>
+              <a href={project.href}>{project.title}</a>
+            </li>
           ))}
         </ul>
       </section>
