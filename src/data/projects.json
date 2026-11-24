@@ -14,7 +14,7 @@
       "links": [{ "label": "scenr.io", "href": "https://scenr.io" }]
     },
     {
-      "name": "RAS — Release Any System",
+      "name": "RAS: Release Any System",
       "role": "Built alone",
       "summary": "Release automation for teams that run on bare metal and VMs.",
       "why": "Kubernetes already has good GitOps tools. Self-managed servers have no standard release process, and that is where one platform engineer is stretched thinnest.",
@@ -34,7 +34,7 @@
       "links": [{ "label": "ras.devcat.site", "href": "https://ras.devcat.site" }]
     },
     {
-      "name": "CausalCircuit — AI SRE",
+      "name": "CausalCircuit: AI SRE",
       "role": "Built alone",
       "summary": "An on-call agent that works out which fault caused which symptom during an incident, and research into why AI SRE agents that know the answer still fail to find it.",
       "what": [
