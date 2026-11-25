@@ -23,10 +23,11 @@
       "title": "Infrastructure Engineer",
       "meta": "FamPay | Bengaluru, India | Jan 2026 – Aug 2026",
       "description": [
-        "Ran release engineering for 100 engineers across 180 repositories.",
-        "Led the migration from Forgejo to self-hosted GitLab.",
-        "Designed and maintained CI/CD pipelines for automated builds, Docker image generation, testing and controlled rollouts.",
-        "Built and maintained UAT environments that mirror production, for safe feature validation and release verification.",
+        "Ran release engineering for 100 engineers across 180 repositories, coordinating with the compliance, security and engineering teams.",
+        "Led the migration of 180+ codebases from Forgejo to self-hosted GitLab.",
+        "Built CI/CD pipelines for 40+ microservices: automated testing, containerized builds and GitOps deployments through ArgoCD and Kubernetes. Manual release work dropped by 90%, and releases went from fortnightly to daily.",
+        "Improved CI observability and enforced CODEOWNERS, merge request approvals and coverage checks, so developers trust a change before it reaches production.",
+        "Built UAT environments that mirror production, and designed ephemeral cluster environments on real infrastructure so developers can validate a service before merge.",
         "Improved observability, autoscaling policies and infrastructure reliability across services."
       ]
     },

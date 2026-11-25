@@ -3,7 +3,7 @@
   "tagline": "production systems, release engineering, and agents you can trust on-call.",
   "bio": [
     "I founded and run **Scenr.io**, where engineering candidates debug a simulated real incident instead of solving puzzles. I sold it myself, and Scaler, Fampay and ArcFront used it to cut hiring for critical infrastructure roles from weeks to days.",
-    "Before that I ran release engineering at **Fampay** for 100 engineers across 180 repositories, and led the migration from Forgejo to self-hosted GitLab. Alongside it I have built two things alone: **RAS**, release automation for bare metal and VMs, and **AI SRE**, an on-call agent that traces symptoms back to the fault behind them.",
+    "Before that I ran release engineering at **Fampay** for 100 engineers across 180 repositories, took releases from fortnightly to daily, and led the migration from Forgejo to self-hosted GitLab. Alongside it I have built two things alone: **RAS**, release automation for bare metal and VMs, and **AI SRE**, an on-call agent that traces symptoms back to the fault behind them. Most recently I submitted a paper on consequence-aware evaluation of AI SREs to the A2NetOps workshop at AAAI.",
     "Before all of this: six years of work and more than 30 freelance clients."
   ],
   "profileImage": "/profile.png",
