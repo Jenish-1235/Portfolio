@@ -37,7 +37,7 @@
       "description": [
         "Built a hiring platform where infrastructure candidates debug a simulated real incident, and we measure how they work.",
         "Sold it myself: more than 100 prospect conversations, closing Scaler, Fampay and ArcFront.",
-        "Customers hired a Head of Infra, SDE 2s, database administrators and security engineers with it, and hiring for those roles went from weeks to days.",
+        "Customers hired a Head of Infra, SDE 2s, database administrators and security engineers with it. Fampay became the first customer and made it mandatory for all its infrastructure interviews.",
         "Raised angel funding and received acquisition offers. Customer demand to run AI agents through the same incidents led me into agent evaluation."
       ]
     }
